@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // output: 'export' removed — API routes (Resend) require a Node.js server.
+  // Deploy on Vercel or any Node-capable host.
+  trailingSlash: true,
+  images: { unoptimized: true },
+}
 
-export default nextConfig;
+export default nextConfig
