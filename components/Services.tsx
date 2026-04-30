@@ -32,13 +32,13 @@ const services = [
   {
     title: 'Social Media Promos',
     description:
-      'High-energy audio and video content designed for maximum engagement across all platforms — from Instagram Reels to YouTube ads.',
+      'High-energy audio and video content designed for maximum engagement across all platforms.',
     image: '/images/socialmediapromo.jpg',
   },
   {
     title: 'Podcast Intros & Outros',
     description:
-      'Memorable podcast branding — from opening hooks to closing sign-offs — that establishes your show\'s voice.',
+      'Memorable podcast branding, from opening hooks to closing sign-offs, that establishes your Podcast\'s voice.',
     image: '/images/podcastintro.jpg',
   },
   {
@@ -49,7 +49,13 @@ const services = [
   },
 ]
 
-export default function Services() {
+export default function Services({
+  activeSample,
+  onViewSamples,
+}: {
+  activeSample: number
+  onViewSamples: (i: number) => void
+}) {
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
@@ -58,14 +64,6 @@ export default function Services() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5"
-            >
-              What We Offer
-            </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +81,7 @@ export default function Services() {
             transition={{ delay: 0.2 }}
             className="text-gray-500 max-w-xs text-sm leading-relaxed"
           >
-            Two pillars — Voice Over Services and Audio Visual Communication —
+            Two Pillars: Voice-Over Services and Audio Visual Communication —
             spanning seven specialist disciplines.
           </motion.p>
         </div>
@@ -99,7 +97,9 @@ export default function Services() {
               transition={{ duration: 0.5, delay: i * 0.06 }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              className="relative group py-7 flex items-center justify-between gap-8 cursor-default overflow-hidden"
+              className={`relative group py-7 flex items-center justify-between gap-8 cursor-default overflow-hidden border-l-2 pl-3 transition-colors duration-300 ${
+                activeSample === i ? 'border-brand-orange' : 'border-transparent'
+              }`}
             >
               {/* Background image on hover */}
               <AnimatePresence>
@@ -150,15 +150,36 @@ export default function Services() {
                 </div>
               </div>
 
-              {/* Arrow */}
-              <motion.span
-                animate={{ x: hovered === i ? 4 : 0, opacity: hovered === i ? 1 : 0.3 }}
-                transition={{ duration: 0.2 }}
-                className="text-brand-orange shrink-0"
-                aria-hidden="true"
-              >
-                →
-              </motion.span>
+              {/* View Samples button / arrow */}
+              <div className="shrink-0 flex items-center">
+                <AnimatePresence mode="wait">
+                  {hovered === i ? (
+                    <motion.button
+                      key="btn"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      onClick={() => onViewSamples(i)}
+                      className="bg-brand-orange text-white text-[11px] font-semibold tracking-[0.14em] uppercase px-5 py-2.5 hover:bg-orange-600 transition-colors duration-200"
+                    >
+                      View Samples
+                    </motion.button>
+                  ) : (
+                    <motion.span
+                      key="arrow"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.3 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="text-brand-orange"
+                      aria-hidden="true"
+                    >
+                      →
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
           ))}
         </div>

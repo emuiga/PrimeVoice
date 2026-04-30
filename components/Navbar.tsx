@@ -20,11 +20,24 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const [samplesVisible, setSamplesVisible] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Hide navbar when the Work Samples section fills the screen
+  useEffect(() => {
+    const el = document.getElementById('samples')
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setSamplesVisible(entry.isIntersecting),
+      { threshold: 0.4 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
@@ -36,8 +49,8 @@ export default function Navbar() {
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      animate={samplesVisible ? { y: '-100%', opacity: 0 } : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
         scrolled
           ? 'bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100'
@@ -55,7 +68,7 @@ export default function Navbar() {
             aria-label="Prime Voice Media — home"
           >
             <Image
-              src="/images/logo-nobg.png"
+              src="/images/PVMlogo.png"
               alt="Prime Voice Media"
               width={200}
               height={56}

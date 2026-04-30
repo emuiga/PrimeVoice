@@ -26,8 +26,8 @@ const clients = [
   },
 ]
 
-// Triple-duplicate for perfectly seamless infinite scroll
-const track = [...clients, ...clients, ...clients]
+// Double-duplicate: animation moves to -50% = exactly one full set
+const track = [...clients, ...clients]
 
 export default function Clients() {
   return (

@@ -42,8 +42,8 @@ export default function About() {
 
             <div className="space-y-5 mb-10">
               {[
-                'Prime Voice Media provides professional voice over and audio visual solutions designed to connect brands with their audiences clearly and meaningfully, driving purposeful impact.',
-                'We exist to link brand-created solutions with the real needs of their target audience, support effective learning experiences, and expand access to information — especially for the visually impaired — through purposeful voice and audio content.',
+                'Prime Voice Media provides professional Voice-Over and audio visual solutions designed to connect brands with their audience clearly and meaningfully, driving purposeful impact.',
+                'We exist to link brand-created solutions with the real needs of their target audience, support effective learning experiences, and expand access to information – especially for the visually impaired – through purposeful voice and audio content.',
               ].map((text, i) => (
                 <motion.p
                   key={i}
@@ -74,7 +74,7 @@ export default function About() {
                   Mission
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  To bring every brand and message into focus — seen, heard, and
+                  To bring every brand and message into focus – seen, heard, and
                   understood so they can serve their ideal audience.
                 </p>
               </motion.div>

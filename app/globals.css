@@ -66,3 +66,12 @@ video {
 }
 
 /* Marquee never pauses — intentionally removed hover-pause rule */
+
+/* ─── Hide scrollbar for tab strip ─── */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

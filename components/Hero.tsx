@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const container = {
   hidden: {},
@@ -18,16 +19,14 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
-      {/* ── Full-screen video — no overlay so "Prime Voice Media" text shows ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/images/videos/studio.mp4"
+      {/* ── Full-screen studio image ── */}
+      <Image
+        src="/images/studio2.jpg"
+        alt=""
+        fill
+        className="object-cover"
+        priority
         aria-hidden="true"
-        preload="auto"
       />
 
       {/* Left-side gradient only — keeps video text visible on the right */}
@@ -59,7 +58,7 @@ export default function Hero() {
               variants={item}
               className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-6"
             >
-              Professional Voice &amp; Audio Visual
+              Professional Voice-Over and Audio Visual
             </motion.span>
 
             <motion.h1
@@ -78,7 +77,7 @@ export default function Hero() {
               className="text-white/80 text-base sm:text-lg leading-relaxed mb-10 max-w-md"
               style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}
             >
-              Professional voice over and audio visual communication
+              Professional Voice-Over and audio visual communication
               tailored to your audience — connecting brands with the people
               they were made to serve.
             </motion.p>

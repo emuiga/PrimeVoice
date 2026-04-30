@@ -22,20 +22,20 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://primevoicemedia.co.ke'),
   icons: {
     icon: [
-      { url: '/images/logo-nobg.png', type: 'image/png', sizes: 'any' },
+      { url: '/images/PVMlogo.png', type: 'image/png', sizes: 'any' },
     ],
-    apple: { url: '/images/logo-nobg.png', type: 'image/png' },
-    shortcut: '/images/logo-nobg.png',
+    apple: { url: '/images/PVMlogo.png', type: 'image/png' },
+    shortcut: '/images/PVMlogo.png',
   },
   title: {
-    default: 'Prime Voice Media | Professional Voice Over & Audio Visual',
+    default: 'Prime Voice Media | Professional Voice-Over & Audio Visual',
     template: '%s | Prime Voice Media',
   },
   description:
-    'Professional voice over and audio visual communication tailored to your audience. Connecting brands with their target audience in Kenya and beyond.',
+    'Professional Voice-Over and audio visual communication tailored to your audience. Connecting brands with their target audience in Kenya and beyond.',
   keywords: [
-    'voice over Kenya',
-    'professional voice over',
+    'voice-over Kenya',
+    'professional voice-over',
     'audio visual communication',
     'radio commercial voice',
     'e-learning narration Kenya',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: 'Prime Voice Media',
     title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
     description:
-      'Professional voice over and audio visual communication tailored to your audience.',
+      'Professional Voice-Over and audio visual communication tailored to your audience.',
     images: [
       {
         url: '/og-image.jpg',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
     description:
-      'Professional voice over and audio visual communication tailored to your audience.',
+      'Professional Voice-Over and audio visual communication tailored to your audience.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -96,13 +96,13 @@ export default function RootLayout({
               '@type': ['LocalBusiness', 'ProfessionalService'],
               name: 'Prime Voice Media',
               description:
-                'Professional voice over and audio visual communication',
+                'Professional Voice-Over and audio visual communication',
               telephone: '+254792481990',
               email: 'enyaboke130@gmail.com',
               url: 'https://primevoicemedia.co.ke',
               areaServed: { '@type': 'Country', name: 'Kenya' },
               serviceType: [
-                'Voice Over',
+                'Voice-Over',
                 'Audio Visual Communication',
                 'E-Learning Narration',
                 'Radio Commercials',

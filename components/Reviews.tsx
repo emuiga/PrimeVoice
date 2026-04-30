@@ -122,7 +122,7 @@ export default function Reviews() {
                 {/* Stars */}
                 <div className="flex gap-0.5 mb-3" aria-label="5 stars">
                   {[...Array(5)].map((_, j) => (
-                    <span key={j} className={`text-sm transition-colors ${active === i ? 'text-brand-orange' : 'text-gray-300 group-hover:text-brand-orange/50'}`} aria-hidden="true">
+                    <span key={j} className="text-sm text-brand-orange" aria-hidden="true">
                       ★
                     </span>
                   ))}

@@ -66,11 +66,11 @@ export default function Footer() {
                 aria-label="Prime Voice Media"
               >
                 <Image
-                  src="/images/logo-nobg.png"
+                  src="/images/PVMlogo.png"
                   alt="Prime Voice Media"
                   width={240}
                   height={68}
-                  className="h-20 sm:h-24 w-auto object-contain brightness-0 invert"
+                  className="h-20 sm:h-24 w-auto object-contain"
                   unoptimized
                 />
               </a>
@@ -82,7 +82,7 @@ export default function Footer() {
                 Prime Voice Media
               </p>
               <p className="text-white/40 text-sm leading-relaxed max-w-xs">
-                Professional voice over and audio visual communication —
+                Professional Voice-Over and audio visual communication,
                 connecting brands with the audiences they were made to serve.
               </p>
             </motion.div>
