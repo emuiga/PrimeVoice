@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PortfolioGrid from '@/components/PortfolioGrid'
+import BackToTop from '@/components/BackToTop'
 import { SERVICES } from '@/lib/services-data'
 
 export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function PortfolioPage() {
 
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }

@@ -9,6 +9,7 @@ import Reviews from '@/components/Reviews'
 import WhyUs from '@/components/WhyUs'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import BackToTop from '@/components/BackToTop'
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }

@@ -32,12 +32,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close menu on any route change
+  useEffect(() => { setMenuOpen(false) }, [pathname])
+
   const handleNavClick = (e: React.MouseEvent, link: { href: string; anchor: boolean }) => {
-    if (!link.anchor) return  // let Next.js Link handle page navigation
-    if (!isHome) return       // let Next.js navigate to /#anchor from other pages
-    e.preventDefault()
     setMenuOpen(false)
-    scrollTo(link.href.replace('/', ''))
+    if (!link.anchor || !isHome) return  // Next.js Link handles navigation
+    e.preventDefault()
+    // Wait for menu-close animation to finish before scrolling
+    setTimeout(() => scrollTo(link.href.replace('/', '')), 300)
   }
 
   return (
