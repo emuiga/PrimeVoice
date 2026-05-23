@@ -20,17 +20,19 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden">
 
-      {/* Video background */}
-      <video autoPlay muted loop playsInline className="w-full block" src="/images/videos/footerdesign.mp4"
-        aria-hidden="true" preload="none" style={{ minHeight: '520px', objectFit: 'cover' }} />
+      {/* Video as absolute background — content drives the height */}
+      <video autoPlay muted loop playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/images/videos/footerdesign.mp4"
+        aria-hidden="true" preload="none" />
 
       {/* Overlays */}
       <div className="absolute inset-0 bg-[#1A0A2E]/93" aria-hidden="true" />
       <div className="absolute top-0 left-0 right-0 h-px bg-brand-orange/40" aria-hidden="true" />
 
-      {/* Content */}
-      <div className="absolute inset-0 z-10 flex flex-col">
-        <div className="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 pt-14 sm:pt-20 pb-6 flex flex-col justify-between">
+      {/* Content — determines footer height */}
+      <div className="relative z-10 flex flex-col">
+        <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 pt-14 sm:pt-20 pb-6 flex flex-col gap-10">
 
           {/* Grid: Brand | Nav | Services | Contact */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8 pb-12 border-b border-white/10">
