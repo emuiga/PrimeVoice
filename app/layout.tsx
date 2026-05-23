@@ -52,14 +52,14 @@ export const metadata: Metadata = {
     siteName: 'Prime Voice Media',
     title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
     description:
-      'Professional Voice-Over and audio visual communication tailored to your audience. Connecting brands with their target audience in Kenya and beyond.',
+      'Audio and visual storytelling crafted to resonate with your audience and create real, lasting impact for your brand.',
     // og:image is served by app/opengraph-image.tsx (auto-generated)
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
     description:
-      'Professional Voice-Over and audio visual communication tailored to your audience.',
+      'Audio and visual storytelling crafted to resonate with your audience and create real, lasting impact for your brand.',
     // twitter:image served by app/twitter-image.tsx (auto-generated)
   },
   robots: {

@@ -165,7 +165,7 @@ function ServiceBanner({ service }: { service: Service }) {
     <div className={`relative w-full overflow-hidden mb-7 bg-gradient-to-br ${service.accentColor}`} style={{ aspectRatio: '21/8', minHeight: '160px' }}>
       <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-end pr-6">
         <div className="relative h-full w-full max-h-48">
-          <Image src={service.image} alt="" fill className="object-contain object-right drop-shadow-2xl" style={{ filter: service.iconFilter }} sizes="25vw" aria-hidden="true" />
+          <Image src={service.image} alt={service.title} fill className="object-contain object-right drop-shadow-2xl" style={{ filter: service.iconFilter }} sizes="25vw" />
         </div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
@@ -174,9 +174,9 @@ function ServiceBanner({ service }: { service: Service }) {
           <p className="text-brand-orange text-[11px] tracking-[0.3em] uppercase font-medium mb-1.5">
             {service.num} · {service.tagline}
           </p>
-          <h3 className="text-white text-2xl lg:text-3xl font-medium leading-tight" style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}>
+          <p className="text-white text-2xl lg:text-3xl font-medium leading-tight" style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}>
             {service.title}
-          </h3>
+          </p>
         </div>
       </div>
     </div>
@@ -224,7 +224,7 @@ export default function ServicesAndSamples() {
                 <button key={s.num} onClick={() => setActive(i)}
                   className={`shrink-0 flex items-center gap-2 px-3 py-2 text-xs font-medium tracking-wide transition-all duration-200 ${active === i ? 'bg-brand-orange text-white shadow-sm' : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-orange/40'}`}>
                   <span className="relative w-5 h-5 shrink-0">
-                    <Image src={s.image} alt="" fill className="object-contain" style={{ filter: s.iconFilter }} sizes="20px" aria-hidden="true" />
+                    <Image src={s.image} alt={s.title} fill className="object-contain" style={{ filter: s.iconFilter }} sizes="20px" />
                   </span>
                   <span className="text-[9px] opacity-60 mr-0.5">{s.num}</span>
                   {s.title}
@@ -274,7 +274,7 @@ export default function ServicesAndSamples() {
                   <button key={s.num} onClick={() => setActive(i)}
                     className={`w-full text-left flex items-center gap-3 px-3 py-3 transition-all duration-200 group ${active === i ? 'bg-white shadow-sm' : 'hover:bg-white/60'}`}>
                     <span className="relative w-8 h-8 shrink-0">
-                      <Image src={s.image} alt="" fill className={`object-contain transition-opacity duration-200 ${active === i ? 'opacity-100' : 'opacity-60 group-hover:opacity-80'}`} style={{ filter: s.iconFilter }} sizes="32px" aria-hidden="true" />
+                      <Image src={s.image} alt={s.title} fill className={`object-contain transition-opacity duration-200 ${active === i ? 'opacity-100' : 'opacity-60 group-hover:opacity-80'}`} style={{ filter: s.iconFilter }} sizes="32px" />
                     </span>
                     <span className={`text-xs font-medium transition-colors duration-200 leading-tight flex-1 ${active === i ? 'text-gray-900' : 'text-gray-500 group-hover:text-gray-700'}`}>
                       <span className={`text-[9px] block mb-0.5 ${active === i ? 'text-brand-orange' : 'text-gray-300 group-hover:text-gray-400'}`}>{s.num}</span>

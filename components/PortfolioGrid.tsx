@@ -101,7 +101,7 @@ function VideoCard({ project, onPlay }: { project: Project; onPlay: () => void }
         className="relative w-full aspect-video group block overflow-hidden bg-gray-900 shrink-0"
         aria-label={`Play ${m.label}`}
       >
-        <Image src={project.serviceImage} alt="" fill className="object-contain p-8 opacity-40 group-hover:opacity-60 transition-opacity duration-300" style={{ filter: project.iconFilter }} sizes="(max-width: 640px) 100vw, 50vw" aria-hidden="true" />
+        <Image src={project.serviceImage} alt={project.serviceTitle} fill className="object-contain p-8 opacity-40 group-hover:opacity-60 transition-opacity duration-300" style={{ filter: project.iconFilter }} sizes="(max-width: 640px) 100vw, 50vw" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-xl">
             <svg viewBox="0 0 24 24" className="w-6 h-6 ml-1" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#FF5A1F" /></svg>
@@ -141,7 +141,7 @@ function AudioCard({ project }: { project: Project }) {
       {/* Icon area */}
       <div className={`relative w-full bg-gradient-to-br ${project.accentColor} flex items-center justify-center`} style={{ aspectRatio: '16/7' }}>
         <div className="relative w-24 h-24 opacity-80">
-          <Image src={project.serviceImage} alt="" fill className="object-contain drop-shadow-xl" style={{ filter: project.iconFilter }} sizes="96px" aria-hidden="true" />
+          <Image src={project.serviceImage} alt={project.serviceTitle} fill className="object-contain drop-shadow-xl" style={{ filter: project.iconFilter }} sizes="96px" />
         </div>
         {/* Waveform animation overlay */}
         <div className="absolute bottom-4 left-0 right-0 flex items-end justify-center gap-1">
@@ -187,7 +187,7 @@ function ServiceTag({ project }: { project: Project }) {
   return (
     <span className="inline-flex items-center gap-1.5 text-[10px] font-medium tracking-[0.12em] uppercase text-gray-600 border border-gray-300 px-2.5 py-1">
       <span className="relative w-3 h-3 shrink-0">
-        <Image src={project.serviceImage} alt="" fill className="object-contain" style={{ filter: FILTER_ORANGE }} sizes="12px" aria-hidden="true" />
+        <Image src={project.serviceImage} alt="" fill className="object-contain" style={{ filter: FILTER_ORANGE }} sizes="12px" />
       </span>
       {project.serviceTitle}
     </span>

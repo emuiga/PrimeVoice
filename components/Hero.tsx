@@ -85,8 +85,8 @@ export default function Hero() {
               className="text-white/80 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm sm:max-w-md"
               style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}
             >
-              Professional audio and visual communication that connects brands
-              with the people they were made to serve.
+              Audio and visual storytelling crafted to resonate with your
+              audience and create real, lasting impact for your brand.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4">
