@@ -59,23 +59,26 @@ function VideoOverlay({ fileId, label, onClose }: { fileId: string; label: strin
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 bg-black/93 flex items-center justify-center p-4 md:p-10"
+      className="fixed inset-0 z-50 bg-black flex flex-col"
       onClick={onClose}
     >
+      {/* Header bar */}
+      <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4 shrink-0" onClick={(e) => e.stopPropagation()}>
+        <p className="text-brand-orange text-[10px] tracking-[0.3em] uppercase font-medium">{label}</p>
+        <button onClick={onClose} aria-label="Close" className="text-white/70 hover:text-white flex items-center gap-1.5 text-sm">
+          <span className="hidden sm:inline">Close</span>
+          <span className="text-2xl leading-none">×</span>
+        </button>
+      </div>
+
+      {/* Video fills every remaining pixel */}
       <motion.div
-        initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-5xl"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="flex-1 min-h-0 w-full"
         onClick={(e) => e.stopPropagation()}
       >
-        <button onClick={onClose} aria-label="Close" className="absolute -top-10 right-0 text-white/70 hover:text-white flex items-center gap-1.5 text-sm">
-          Close <span className="text-xl leading-none">×</span>
-        </button>
-        <p className="text-brand-orange text-[10px] tracking-[0.3em] uppercase font-medium mb-3">{label}</p>
-        <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-          <iframe className="absolute inset-0 w-full h-full border-0" src={`https://drive.google.com/file/d/${fileId}/preview`} title={label} allow="autoplay" allowFullScreen />
-        </div>
-        <p className="mt-3 text-white/30 text-xs text-center">Press Esc or click outside to close</p>
+        <iframe className="w-full h-full border-0 block" src={`https://drive.google.com/file/d/${fileId}/preview`} title={label} allow="autoplay" allowFullScreen />
       </motion.div>
     </motion.div>
   )
