@@ -93,7 +93,7 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.25 }}
-                href="https://wa.me/254792481990"
+                href="https://wa.me/254792481990?text=Hi%20Prime%20Voice%20Media%2C%20I%20came%20across%20your%20work%20and%20I%27m%20interested%20in%20discussing%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col items-center gap-2"
@@ -160,7 +160,7 @@ export default function Contact() {
                       <input
                         type={f.type} id={f.id} name={f.name}
                         placeholder={f.placeholder} required
-                        className="w-full border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:bg-white transition-all text-sm"
+                        className="w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-4 py-3.5 focus:outline-none focus:border-brand-orange transition-all text-sm"
                       />
                     </div>
                   ))}
@@ -171,7 +171,7 @@ export default function Contact() {
                   <input
                     type="text" id="contact-subject" name="subject"
                     placeholder="Project Type (e.g. Radio Commercial, E-Learning)"
-                    className="w-full border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:bg-white transition-all text-sm"
+                    className="w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-4 py-3.5 focus:outline-none focus:border-brand-orange transition-all text-sm"
                   />
                 </div>
 
@@ -180,7 +180,7 @@ export default function Contact() {
                   <textarea
                     id="contact-message" name="message"
                     placeholder="Tell us about your project…" required rows={5}
-                    className="w-full border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:bg-white transition-all text-sm resize-none"
+                    className="w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-4 py-3.5 focus:outline-none focus:border-brand-orange transition-all text-sm resize-none"
                   />
                 </div>
 

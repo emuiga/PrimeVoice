@@ -10,7 +10,7 @@
   /* Brand fonts */
   --font-playfair: var(--font-playfair-display);
   --font-inter: var(--font-inter-body);
-  --font-heading: 'SuisseIntl', Arial, sans-serif;
+  --font-heading: 'SuisseIntl', var(--font-inter-body), sans-serif;
 }
 
 :root {
@@ -25,14 +25,14 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter-body), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter-body), sans-serif;
   font-size: 16px;
   line-height: 1.7;
 }
 
 /* ─── Display heading — brand spec ─── */
 .heading-display {
-  font-family: 'SuisseIntl', Arial, sans-serif;
+  font-family: 'SuisseIntl', var(--font-inter-body), sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: clamp(36px, 5vw, 55px);
@@ -41,7 +41,7 @@ body {
 }
 
 .heading-display-white {
-  font-family: 'SuisseIntl', Arial, sans-serif;
+  font-family: 'SuisseIntl', var(--font-inter-body), sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: clamp(36px, 5vw, 55px);

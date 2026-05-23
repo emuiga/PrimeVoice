@@ -52,21 +52,29 @@ export default function Hero() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="max-w-xl"
+            className="max-w-2xl"
           >
             <motion.span
               variants={item}
-              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-6"
+              className="inline-block text-brand-orange text-[10px] sm:text-xs font-medium tracking-[0.35em] uppercase mb-5 sm:mb-6"
             >
-              Professional Voice-Over and Audio Visual
+              Voice-Over &amp; Audio Visual Production
             </motion.span>
 
             <motion.h1
               variants={item}
-              className="heading-display-white mb-6"
-              style={{ textShadow: '0 2px 24px rgba(0,0,0,0.85), 0 1px 6px rgba(0,0,0,0.9)' }}
+              className="mb-6"
+              style={{
+                fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif",
+                fontWeight: 500,
+                fontSize: 'clamp(32px, 6vw, 58px)',
+                lineHeight: 'clamp(38px, 6.8vw, 65px)',
+                color: '#ffffff',
+                textShadow: '0 2px 24px rgba(0,0,0,0.85), 0 1px 6px rgba(0,0,0,0.9)',
+              }}
             >
-              Voice That Resonates,{' '}
+              Voice That Resonates,
+              <br />
               <span className="text-brand-orange" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.7)' }}>
                 Impact That Lasts
               </span>
@@ -74,25 +82,24 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="text-white/80 text-base sm:text-lg leading-relaxed mb-10 max-w-md"
+              className="text-white/80 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm sm:max-w-md"
               style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}
             >
-              Professional Voice-Over and audio visual communication
-              tailored to your audience — connecting brands with the people
-              they were made to serve.
+              Professional audio and visual communication that connects brands
+              with the people they were made to serve.
             </motion.p>
 
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
+            <motion.div variants={item} className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => handleScroll('#samples')}
-                className="border border-white/50 text-white text-sm font-medium tracking-[0.12em] px-8 py-4 hover:bg-white hover:text-black transition-all duration-300"
+                className="border border-white/50 text-white text-sm font-medium tracking-[0.12em] px-7 py-3.5 sm:px-8 sm:py-4 hover:bg-white hover:text-black transition-all duration-300"
                 style={{ textShadow: 'none' }}
               >
-                Experience the Voice
+                Hear the Work
               </button>
               <button
                 onClick={() => handleScroll('#contact')}
-                className="bg-brand-orange text-white text-sm font-medium tracking-[0.12em] px-8 py-4 hover:bg-orange-600 transition-colors duration-300"
+                className="bg-brand-orange text-white text-sm font-medium tracking-[0.12em] px-7 py-3.5 sm:px-8 sm:py-4 hover:bg-orange-600 transition-colors duration-300"
               >
                 Let&apos;s Work Together
               </button>

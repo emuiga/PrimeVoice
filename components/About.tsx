@@ -14,8 +14,39 @@ const fadeUp = {
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="about" className="relative py-24 lg:py-32 bg-white overflow-hidden">
+
+      {/* Abstract background pattern — evenly distributed */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Dot grid — full section */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04]">
+          <defs>
+            <pattern id="about-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#1A0A2E" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#about-dots)" />
+        </svg>
+        {/* Gradient blobs — spread top, middle, bottom */}
+        <div className="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-brand-orange/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-64 rounded-full bg-brand-purple/8 blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-brand-orange/8 blur-3xl" />
+        {/* Wave lines — mid-section horizontal */}
+        <svg className="absolute left-0 right-0 opacity-[0.06] w-full" style={{ top: '40%' }} viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+          <path d="M0 30 Q180 5 360 30 Q540 55 720 30 Q900 5 1080 30 Q1260 55 1440 30" stroke="#FF5A1F" strokeWidth="1.5" />
+        </svg>
+        <svg className="absolute left-0 right-0 opacity-[0.05] w-full" style={{ top: '70%' }} viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+          <path d="M0 30 Q180 55 360 30 Q540 5 720 30 Q900 55 1080 30 Q1260 5 1440 30" stroke="#5E189A" strokeWidth="1" />
+        </svg>
+        {/* Corner ring accents */}
+        <svg className="absolute right-0 top-0 opacity-[0.05] w-48 h-48" viewBox="0 0 200 200" fill="none">
+          {[40, 80, 120].map((r) => (
+            <circle key={r} cx="200" cy="0" r={r} stroke="#5E189A" strokeWidth="1" />
+          ))}
+        </svg>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           {/* Left — Text */}

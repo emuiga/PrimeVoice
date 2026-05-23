@@ -6,27 +6,27 @@ import { motion, AnimatePresence } from 'framer-motion'
 const reviews = [
   {
     id: 1,
-    name: 'Amina Wanjiku',
-    title: 'Marketing Director, Safaricom',
-    avatar: 'AW',
+    name: 'Kenya Broadcasting Corporation',
+    title: 'KBC',
+    avatar: 'KB',
     quote:
-      'Prime Voice Media delivered exactly what our brand needed — a clear, compelling voice that resonated with our audience from the very first listen. The turnaround was exceptional.',
+      'Prime Voice Media delivered exactly what our brand needed: a clear, compelling voice that resonated with our audience from the very first listen. The turnaround was exceptional.',
   },
   {
     id: 2,
-    name: 'David Otieno',
-    title: 'E-Learning Coordinator, Strathmore University',
-    avatar: 'DO',
+    name: 'Lightower Electricals',
+    title: 'Lightower Electricals',
+    avatar: 'LE',
     quote:
-      'The narration quality was outstanding. Our learners engaged more deeply with the course material thanks to the professional audio production. Highly professional service.',
+      'The narration quality was outstanding. Professional, crisp, and delivered on time. Prime Voice Media understood our brand message and brought it to life perfectly.',
   },
   {
     id: 3,
-    name: 'Grace Njeri',
-    title: 'Brand Manager, KCB Group',
-    avatar: 'GN',
+    name: 'Kisii Family Medical Centre',
+    title: 'Kisii Medical',
+    avatar: 'KM',
     quote:
-      'Quick turnaround, excellent communication, and a final product that exceeded our expectations. Prime Voice Media truly understands the Kenyan market.',
+      'Quick turnaround, excellent communication, and a final product that exceeded our expectations. Prime Voice Media truly understood our need.',
   },
 ]
 
@@ -34,8 +34,29 @@ export default function Reviews() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="reviews" className="py-20 sm:py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="reviews" className="relative py-20 sm:py-24 bg-white overflow-hidden">
+
+      {/* Abstract background */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-brand-orange/8 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-brand-purple/8 blur-3xl" />
+        <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-brand-orange/6 blur-2xl" />
+        <svg className="absolute left-0 top-1/2 -translate-y-1/2 opacity-[0.05] w-64 h-64" viewBox="0 0 300 300" fill="none">
+          {[40, 80, 120, 160, 200].map((r) => (
+            <circle key={r} cx="0" cy="150" r={r} stroke="#FF5A1F" strokeWidth="1" />
+          ))}
+        </svg>
+        <svg className="absolute inset-0 w-full h-full opacity-[0.025]">
+          <defs>
+            <pattern id="reviews-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#1A0A2E" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#reviews-dots)" />
+        </svg>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
@@ -97,7 +118,7 @@ export default function Reviews() {
                   <p className="font-medium text-gray-900 text-sm leading-tight">
                     {reviews[active].name}
                   </p>
-                  <p className="text-gray-400 text-xs mt-0.5">{reviews[active].title}</p>
+                  <p className="text-gray-500 text-xs mt-0.5">{reviews[active].title}</p>
                 </div>
               </motion.footer>
             </AnimatePresence>
@@ -136,7 +157,7 @@ export default function Reviews() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold text-gray-800 leading-tight">{review.name}</p>
-                    <p className="text-xs text-gray-400">{review.title}</p>
+                    <p className="text-xs text-gray-500">{review.title}</p>
                   </div>
                 </div>
               </motion.article>

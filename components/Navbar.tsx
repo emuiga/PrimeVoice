@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
+// anchor links scroll on the homepage; full links navigate from any page
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#samples' },
-  { label: 'Clients', href: '#clients' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about', anchor: true },
+  { label: 'Services', href: '/#services', anchor: true },
+  { label: 'Portfolio', href: '/portfolio', anchor: false },
+  { label: 'Clients', href: '/#clients', anchor: true },
+  { label: 'Contact', href: '/#contact', anchor: true },
 ]
 
 function scrollTo(id: string) {
@@ -20,7 +23,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
-  const [samplesVisible, setSamplesVisible] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -28,28 +32,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Hide navbar when the Work Samples section fills the screen
-  useEffect(() => {
-    const el = document.getElementById('samples')
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setSamplesVisible(entry.isIntersecting),
-      { threshold: 0.4 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const handleNavClick = (e: React.MouseEvent, href: string) => {
+  const handleNavClick = (e: React.MouseEvent, link: { href: string; anchor: boolean }) => {
+    if (!link.anchor) return  // let Next.js Link handle page navigation
+    if (!isHome) return       // let Next.js navigate to /#anchor from other pages
     e.preventDefault()
     setMenuOpen(false)
-    scrollTo(href)
+    scrollTo(link.href.replace('/', ''))
   }
 
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
-      animate={samplesVisible ? { y: '-100%', opacity: 0 } : { y: 0, opacity: 1 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
         scrolled
@@ -80,20 +74,17 @@ export default function Navbar() {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => handleNavClick(e, link)}
                 onMouseEnter={() => setHoveredLink(link.label)}
                 onMouseLeave={() => setHoveredLink(null)}
                 className={`relative text-sm font-medium tracking-wide pb-1 transition-colors duration-200 ${
-                  scrolled
-                    ? 'text-gray-700 hover:text-brand-purple'
-                    : 'text-white/85 hover:text-white'
+                  scrolled ? 'text-gray-700 hover:text-brand-purple' : 'text-white/85 hover:text-white'
                 }`}
               >
                 {link.label}
-                {/* Purple animated underline */}
                 {hoveredLink === link.label && (
                   <motion.span
                     layoutId="nav-underline"
@@ -104,15 +95,15 @@ export default function Navbar() {
                     transition={{ type: 'spring', stiffness: 600, damping: 35 }}
                   />
                 )}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
+            <Link
+              href="/#contact"
+              onClick={(e) => handleNavClick(e, { href: '#contact', anchor: true })}
               className="bg-brand-orange text-white text-sm font-medium px-5 py-2.5 hover:bg-orange-600 transition-colors duration-200 tracking-wide"
             >
               Let&apos;s work together
-            </a>
+            </Link>
           </div>
 
           {/* Hamburger */}
@@ -159,26 +150,24 @@ export default function Navbar() {
           >
             <div className="px-6 py-5 space-y-1">
               {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.label}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="flex items-center justify-between text-sm font-medium text-gray-700 hover:text-brand-purple transition-colors py-3 border-b border-gray-50 last:border-0"
-                >
-                  {link.label}
-                  <span className="text-gray-300 text-xs">→</span>
-                </motion.a>
+                <motion.div key={link.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
+                  <Link
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className="flex items-center justify-between text-sm font-medium text-gray-700 hover:text-brand-purple transition-colors py-3 border-b border-gray-50"
+                  >
+                    {link.label}
+                    <span className="text-gray-300 text-xs">→</span>
+                  </Link>
+                </motion.div>
               ))}
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, '#contact')}
+              <Link
+                href="/#contact"
+                onClick={(e) => handleNavClick(e, { href: '#contact', anchor: true })}
                 className="block mt-4 bg-brand-orange text-white text-sm font-medium px-6 py-3 text-center hover:bg-orange-600 transition-colors"
               >
                 Let&apos;s work together
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

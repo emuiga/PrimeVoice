@@ -7,7 +7,7 @@ const points = [
     num: '01',
     title: 'Client Centric',
     description:
-      'We prioritize your goals and craft solutions designed for your specific audience — not a one-size-fits-all approach.',
+      'We prioritize your goals and craft solutions designed for your specific audience, not a one-size-fits-all approach.',
     accentColor: 'brand-orange',
   },
   {
@@ -38,8 +38,27 @@ const card = {
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="py-24 bg-brand-surface overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="why-us" className="relative py-24 bg-brand-surface overflow-hidden">
+
+      {/* Abstract background pattern */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Blended gradient blobs */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-orange/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full bg-brand-purple/10 blur-3xl" />
+        {/* Concentric circle pattern — soundwave rings */}
+        <svg className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.06] w-[520px] h-[520px]" viewBox="0 0 520 520" fill="none">
+          {[60, 110, 160, 210, 260].map((r) => (
+            <circle key={r} cx="520" cy="260" r={r} stroke="#5E189A" strokeWidth="1" />
+          ))}
+        </svg>
+        <svg className="absolute -left-20 bottom-0 opacity-[0.07] w-72 h-72" viewBox="0 0 300 300" fill="none">
+          {[40, 80, 120, 160].map((r) => (
+            <circle key={r} cx="0" cy="300" r={r} stroke="#FF5A1F" strokeWidth="1" />
+          ))}
+        </svg>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
@@ -105,7 +124,7 @@ export default function WhyUs() {
               <div>
                 <h3
                   className="text-xl font-medium text-gray-900 group-hover:text-white mb-3 transition-colors duration-300"
-                  style={{ fontFamily: "'SuisseIntl', Arial, sans-serif" }}
+                  style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}
                 >
                   {point.title}
                 </h3>
@@ -119,5 +138,6 @@ export default function WhyUs() {
 
       </div>
     </section>
+
   )
 }

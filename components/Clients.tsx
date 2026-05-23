@@ -6,86 +6,86 @@ import Image from 'next/image'
 const clients = [
   {
     name: 'Kenya Broadcasting Corporation',
+    shortName: 'KBC',
     image: '/images/KBC_Kenya.PNG',
-    initials: null,
   },
   {
     name: 'Lightower Electricals',
+    shortName: 'Lightower',
     image: '/images/Lightower.webp',
-    initials: null,
   },
   {
     name: 'Bethany Delights',
+    shortName: 'Bethany Delights',
     image: null,
-    initials: 'BD',
   },
   {
     name: 'Kisii Family Medical Centre',
+    shortName: 'Kisii Medical',
     image: '/images/kisiifamilymedicalcentre-300x300.jpg',
-    initials: null,
   },
 ]
 
-// Double-duplicate: animation moves to -50% = exactly one full set
-const track = [...clients, ...clients]
-
 export default function Clients() {
   return (
-    <section id="clients" className="py-10 sm:py-14 overflow-hidden bg-[#1A0A2E]">
+    <section id="clients" className="bg-brand-dark py-16 sm:py-20 overflow-hidden">
 
-      {/* Centered header */}
+      {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-8 sm:mb-10 px-6"
+        className="text-center mb-12 px-6"
       >
+        <p className="text-brand-orange text-[10px] tracking-[0.4em] uppercase font-medium mb-3">
+          Our Clients
+        </p>
         <h2 className="heading-display-white">Trusted By</h2>
       </motion.div>
 
-      {/* Carousel — continuous, never pauses */}
-      <div className="relative overflow-hidden">
-        {/* Edge fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #1A0A2E, transparent)' }}
-          aria-hidden="true"
-        />
-        <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #1A0A2E, transparent)' }}
-          aria-hidden="true"
-        />
-
-        <div className="animate-marquee flex items-center" style={{ width: 'max-content' }}>
-          {track.map((client, i) => (
-            <div
-              key={`${client.name}-${i}`}
-              className="shrink-0 flex flex-col items-center gap-3 px-10 border-r border-white/5"
+      {/* Logo grid */}
+      <div className="max-w-5xl mx-auto px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {clients.map((client, i) => (
+            <motion.div
+              key={client.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="bg-white flex flex-col items-center justify-center gap-3 py-8 px-6"
             >
-              {/* Logo circle — matches original style */}
-              <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center bg-brand-purple/25 border border-white/10">
-                {client.image ? (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={client.image}
-                      alt={client.name}
-                      fill
-                      className="object-contain p-2.5"
-                      sizes="80px"
-                    />
-                  </div>
-                ) : (
-                  <span className="text-white font-bold text-sm text-center leading-tight px-2">
-                    {client.initials}
-                  </span>
-                )}
-              </div>
-              <p className="text-white/50 text-xs text-center max-w-[120px] leading-snug">
-                {client.name}
-              </p>
-            </div>
+              {client.image ? (
+                <div className="relative w-full h-14 sm:h-16">
+                  <Image
+                    src={client.image}
+                    alt={client.name}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+              ) : (
+                /* Styled wordmark for clients without a logo file */
+                <p
+                  className="text-brand-dark text-lg sm:text-xl font-semibold tracking-tight text-center leading-tight"
+                  style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}
+                >
+                  {client.shortName}
+                </p>
+              )}
+              <span className="text-gray-600 text-[10px] tracking-[0.18em] uppercase text-center leading-snug">
+                {client.shortName}
+              </span>
+            </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* Bottom rule */}
+      <div className="max-w-5xl mx-auto px-8 mt-0">
+        <div className="h-px bg-white/5" />
       </div>
 
     </section>
