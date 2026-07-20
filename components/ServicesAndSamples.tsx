@@ -73,12 +73,10 @@ function DriveAudioCard({ fileId, label, accentColor }: { fileId: string; label:
     <div className="overflow-hidden border border-gray-200 bg-white shadow-sm">
       {/* Accent header — icon, waveform, title */}
       <div className={`relative flex items-center gap-3 px-4 py-3.5 bg-gradient-to-r ${accentColor}`}>
-        <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center shrink-0" aria-hidden="true">
-          <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="currentColor">
-            <path d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3z" />
-            <path d="M19 11a1 1 0 00-2 0 5 5 0 01-10 0 1 1 0 00-2 0 7 7 0 006 6.92V20H9a1 1 0 100 2h6a1 1 0 100-2h-2v-2.08A7 7 0 0019 11z" />
-          </svg>
-        </div>
+        <svg viewBox="0 0 24 24" className="w-5 h-5 text-white shrink-0" fill="currentColor" aria-hidden="true">
+          <path d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3z" />
+          <path d="M19 11a1 1 0 00-2 0 5 5 0 01-10 0 1 1 0 00-2 0 7 7 0 006 6.92V20H9a1 1 0 100 2h6a1 1 0 100-2h-2v-2.08A7 7 0 0019 11z" />
+        </svg>
         <p className="text-sm font-medium text-white truncate flex-1 min-w-0">{label}</p>
         <div className="flex items-end gap-0.5 h-4 shrink-0" aria-hidden="true">
           {[4, 7, 5, 9, 6, 8].map((h, i) => (
@@ -151,7 +149,7 @@ function ServiceSpread({ service, reverse, isOpen, onToggle, onPlayVideo }: {
 
         {/* Text column */}
         <div>
-          <p className={`italic text-base mb-3 ${hasPhoto ? 'text-white/60' : 'text-gray-400'}`}>{service.tagline}</p>
+          <p className={`font-mono-label text-xs tracking-wide uppercase mb-3 ${hasPhoto ? 'text-white/60' : 'text-gray-400'}`}>{service.tagline}</p>
           <h3
             className="mb-5"
             style={{
@@ -171,10 +169,16 @@ function ServiceSpread({ service, reverse, isOpen, onToggle, onPlayVideo }: {
         <div className="relative aspect-[4/3] overflow-hidden bg-brand-dark">
           <Image src={service.photo ?? service.image} alt={service.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
           <div className={`absolute inset-0 bg-gradient-to-t ${service.accentColor} opacity-30`} aria-hidden="true" />
-          <div className="absolute bottom-4 left-4 w-11 h-11 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
-            <div className="relative w-6 h-6">
-              <Image src={service.image} alt="" fill className="object-contain" style={{ filter: service.iconFilter }} sizes="24px" aria-hidden="true" />
-            </div>
+          <div className="absolute bottom-4 left-4 w-8 h-8">
+            <Image
+              src={service.image}
+              alt=""
+              fill
+              className="object-contain"
+              style={{ filter: 'brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }}
+              sizes="32px"
+              aria-hidden="true"
+            />
           </div>
         </div>
 

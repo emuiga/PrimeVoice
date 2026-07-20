@@ -76,31 +76,34 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link)}
-                onMouseEnter={() => setHoveredLink(link.label)}
-                onMouseLeave={() => setHoveredLink(null)}
-                style={{ fontFamily: 'var(--font-roboto-mono)' }}
-                className={`relative text-sm font-medium tracking-wide pb-1 transition-colors duration-200 ${
-                  scrolled ? 'text-gray-700 hover:text-brand-purple' : 'text-white/85 hover:text-white'
-                }`}
-              >
-                {link.label}
-                {hoveredLink === link.label && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-purple rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    exit={{ scaleX: 0 }}
-                    transition={{ type: 'spring', stiffness: 600, damping: 35 }}
-                  />
-                )}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = !link.anchor && pathname === link.href
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link)}
+                  onMouseEnter={() => setHoveredLink(link.label)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  style={{ fontFamily: 'var(--font-roboto-mono)' }}
+                  className={`relative text-sm font-medium tracking-wide pb-1 transition-colors duration-200 ${
+                    scrolled ? 'text-gray-700 hover:text-brand-purple' : 'text-white/85 hover:text-white'
+                  } ${isActive && scrolled ? 'text-brand-purple' : ''} ${isActive && !scrolled ? 'text-white' : ''}`}
+                >
+                  {link.label}
+                  {(hoveredLink === link.label || isActive) && (
+                    <motion.span
+                      layoutId={hoveredLink === link.label ? 'nav-underline' : undefined}
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${scrolled ? 'bg-brand-purple' : 'bg-white'}`}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      exit={{ scaleX: 0 }}
+                      transition={{ type: 'spring', stiffness: 600, damping: 35 }}
+                    />
+                  )}
+                </Link>
+              )
+            })}
             <Link
               href="/#contact"
               onClick={(e) => handleNavClick(e, { href: '#contact', anchor: true })}

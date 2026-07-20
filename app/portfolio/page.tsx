@@ -49,27 +49,24 @@ export default function PortfolioPage() {
       <main>
 
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section className="relative bg-brand-dark overflow-hidden" style={{ minHeight: '42vh' }}>
-          {/* Background image */}
+        <section className="relative bg-brand-dark overflow-hidden" style={{ minHeight: '52vh' }}>
+          {/* Background photo — real, present, not faded to near-invisible */}
           <div className="absolute inset-0 bg-brand-dark">
-            <Image src="/images/studio1.jpg" alt="" fill priority className="object-cover opacity-20" sizes="100vw" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 to-brand-dark" />
+            <Image src="/images/studio1.jpg" alt="" fill priority className="object-cover" sizes="100vw" aria-hidden="true" />
+            <div
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(to right, rgba(26,10,46,0.92) 0%, rgba(26,10,46,0.6) 55%, rgba(26,10,46,0.35) 100%)' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
           </div>
 
-          {/* Concentric circle pattern — echoes the homepage's soundwave motif */}
-          <svg className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.08] w-[420px] h-[420px] pointer-events-none" viewBox="0 0 520 520" fill="none" aria-hidden="true">
-            {[60, 110, 160, 210, 260].map((r) => (
-              <circle key={r} cx="520" cy="260" r={r} stroke="#FF5A1F" strokeWidth="1" />
-            ))}
-          </svg>
-
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-20">
-            <p className="text-brand-orange text-[11px] tracking-[0.35em] uppercase font-medium mb-4 font-mono-label">
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-40 pb-24 flex flex-col justify-end min-h-[52vh]">
+            <p className="text-brand-orange text-[11px] tracking-[0.35em] uppercase font-medium mb-5 font-mono-label">
               Prime Voice Media
             </p>
-            <h1 className="heading-display-white mb-4">Our Portfolio</h1>
-            <p className="text-white/50 text-base leading-relaxed max-w-lg">
-              Real samples from real projects. Filter by service to find exactly what you need.
+            <h1 className="heading-display-white mb-5 max-w-2xl">Our Portfolio</h1>
+            <p className="text-white/60 text-base leading-relaxed max-w-lg">
+              A curated look at the voices, stories, and productions we&apos;ve brought to life for brands across every discipline.
             </p>
           </div>
         </section>

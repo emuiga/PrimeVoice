@@ -67,14 +67,14 @@ export const metadata: Metadata = {
     locale: 'en_KE',
     url: BASE,
     siteName: 'Prime Voice Media',
-    title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
+    title: 'Prime Voice Media - Voice That Resonates, Impact That Lasts!',
     description:
       'Audio and visual storytelling crafted to resonate with your audience and create real, lasting impact for your brand.',
     // og:image is served by app/opengraph-image.tsx (auto-generated)
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts',
+    title: 'Prime Voice Media | Voice That Resonates, Impact That Lasts!',
     description:
       'Audio and visual storytelling crafted to resonate with your audience and create real, lasting impact for your brand.',
     // twitter:image served by app/twitter-image.tsx (auto-generated)

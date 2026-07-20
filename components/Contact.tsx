@@ -72,8 +72,8 @@ export default function Contact() {
               transition={{ duration: 0.7 }}
               className="heading-display mb-6"
             >
-              Let&apos;s collaborate and create{' '}
-              <span className="text-brand-orange">impact that lasts</span>
+              Let&apos;s <span className="text-brand-orange">collaborate</span> and{' '}
+              <span className="text-brand-orange">create impact</span> that lasts!
             </motion.h2>
 
             <motion.p

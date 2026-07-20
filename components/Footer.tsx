@@ -111,17 +111,17 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar — after the wordmark, last thing in the footer */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-white/30 text-xs font-mono-label tracking-wide">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 py-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 sm:gap-4">
+        <p className="text-white/30 text-[11px] sm:text-xs font-mono-label tracking-wide text-center sm:text-left">
           © {year} Prime Voice Media. All rights reserved.
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           {SOCIAL_LINKS.map((s) => (
             <a
               key={s.label}
               href={s.href}
               aria-label={s.label}
-              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-colors duration-200"
+              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-colors duration-200 shrink-0"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d={s.path} />
