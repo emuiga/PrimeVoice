@@ -64,7 +64,7 @@ function VideoOverlay({ fileId, label, onClose }: { fileId: string; label: strin
     >
       {/* Header bar */}
       <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4 shrink-0" onClick={(e) => e.stopPropagation()}>
-        <p className="text-brand-orange text-[10px] tracking-[0.3em] uppercase font-medium">{label}</p>
+        <p className="text-brand-orange text-[10px] tracking-[0.3em] uppercase font-medium font-mono-label">{label}</p>
         <button onClick={onClose} aria-label="Close" className="text-white/70 hover:text-white flex items-center gap-1.5 text-sm">
           <span className="hidden sm:inline">Close</span>
           <span className="text-2xl leading-none">×</span>
@@ -115,7 +115,7 @@ function VideoCard({ project, onPlay }: { project: Project; onPlay: () => void }
       {/* Info */}
       <div className="px-5 py-4 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="text-base font-medium text-gray-900 mb-1.5 leading-snug" style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}>
+          <h3 className="text-base font-medium text-gray-900 mb-1.5 leading-snug" style={{ fontFamily: 'var(--font-heading)' }}>
             {project.label}
           </h3>
           <ServiceTag project={project} />
@@ -160,7 +160,7 @@ function AudioCard({ project }: { project: Project }) {
       {/* Info + player */}
       <div className="px-5 pt-4 pb-5 flex-1 flex flex-col gap-3">
         <div>
-          <h3 className="text-base font-medium text-gray-900 mb-1.5 leading-snug" style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}>
+          <h3 className="text-base font-medium text-gray-900 mb-1.5 leading-snug" style={{ fontFamily: 'var(--font-heading)' }}>
             {project.label}
           </h3>
           <ServiceTag project={project} />
@@ -168,7 +168,7 @@ function AudioCard({ project }: { project: Project }) {
 
         {/* Audio player — click to load */}
         {loaded ? (
-          <iframe src={`https://drive.google.com/file/d/${m.fileId}/preview`} width="100%" height="80" allow="autoplay" title={m.label} className="border-0 w-full block" />
+          <iframe src={`https://drive.google.com/file/d/${m.fileId}/preview`} width="100%" height="170" allow="autoplay" title={m.label} className="border-0 w-full block" />
         ) : (
           <button onClick={() => setLoaded(true)}
             className="flex items-center gap-2.5 text-gray-700 hover:text-brand-orange transition-colors group text-sm">
@@ -188,7 +188,7 @@ function AudioCard({ project }: { project: Project }) {
 // ── Service type badge ─────────────────────────────────────────────────────
 function ServiceTag({ project }: { project: Project }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[10px] font-medium tracking-[0.12em] uppercase text-gray-600 border border-gray-300 px-2.5 py-1">
+    <span className="inline-flex items-center gap-1.5 text-[10px] font-medium tracking-[0.12em] uppercase text-gray-600 border border-gray-300 px-2.5 py-1 font-mono-label">
       <span className="relative w-3 h-3 shrink-0">
         <Image src={project.serviceImage} alt="" fill className="object-contain" style={{ filter: FILTER_ORANGE }} sizes="12px" />
       </span>
@@ -222,11 +222,11 @@ export default function PortfolioGrid() {
       </AnimatePresence>
 
       {/* Filter tabs */}
-      <div className="mb-10 -mx-6 px-6 overflow-x-auto scrollbar-hide">
+      <div className="mb-6 -mx-6 px-6 overflow-x-auto scrollbar-hide">
         <div className="flex gap-2 min-w-max pb-1">
           {FILTER_OPTIONS.map((f) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={`shrink-0 px-4 py-2 text-xs font-medium tracking-wide transition-all duration-200 ${filter === f ? 'bg-brand-dark text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-400'}`}>
+              className={`shrink-0 px-4 py-2 text-xs font-medium tracking-wide font-mono-label transition-all duration-200 ${filter === f ? 'bg-brand-orange text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-orange hover:text-brand-orange'}`}>
               {f}
             </button>
           ))}
@@ -234,7 +234,7 @@ export default function PortfolioGrid() {
       </div>
 
       {/* Project count */}
-      <p className="text-gray-600 text-xs tracking-[0.2em] uppercase mb-8">
+      <p className="text-gray-600 text-xs tracking-[0.2em] uppercase mb-8 border-b border-gray-200 pb-6 font-mono-label">
         {visible.length} {visible.length === 1 ? 'project' : 'projects'}
         {filter !== 'All' && ` in ${filter}`}
       </p>
@@ -258,7 +258,7 @@ export default function PortfolioGrid() {
 
       {/* CTA */}
       <div className="mt-20 text-center border-t border-gray-200 pt-16">
-        <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4">Want work like this for your brand?</p>
+        <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4 font-mono-label">Want work like this for your brand?</p>
         <a
           href="https://wa.me/254792481990?text=Hi%20Prime%20Voice%20Media%2C%20I%20came%20across%20your%20portfolio%20and%20I%27m%20interested%20in%20starting%20a%20project."
           target="_blank"

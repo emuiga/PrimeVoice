@@ -56,7 +56,7 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5"
+              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5 font-mono-label"
             >
               Our Story
             </motion.span>
@@ -73,7 +73,7 @@ export default function About() {
 
             <div className="space-y-5 mb-10">
               {[
-                'Prime Voice Media provides professional Voice-Over and audio visual solutions designed to connect brands with their audience clearly and meaningfully, driving purposeful impact.',
+                'Prime Voice Media provides professional Voice-Over and Audio-Visual solutions designed to connect brands with their audience clearly and meaningfully, driving purposeful impact.',
                 'We exist to link brand-created solutions with the real needs of their target audience, support effective learning experiences, and expand access to information – especially for the visually impaired – through purposeful voice and audio content.',
               ].map((text, i) => (
                 <motion.p
@@ -115,10 +115,10 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="border-t-2 border-gray-200 pt-5"
+                className="border-t-2 border-brand-purple pt-5"
               >
                 <h3
-                  className="text-sm font-medium tracking-[0.2em] uppercase text-gray-400 mb-3"
+                  className="text-sm font-medium tracking-[0.2em] uppercase text-brand-purple mb-3"
                 >
                   Vision
                 </h3>
@@ -141,7 +141,7 @@ export default function About() {
             {/* Main image */}
             <div className="relative aspect-[4/5] overflow-hidden">
               <Image
-                src="/images/studio.jpg"
+                src="/images/studiooo.jpeg"
                 alt="Prime Voice Media recording studio"
                 fill
                 className="object-cover"
@@ -160,7 +160,7 @@ export default function About() {
               className="absolute -bottom-8 -left-8 w-40 h-40 md:w-52 md:h-52 border-4 border-white overflow-hidden shadow-2xl"
             >
               <Image
-                src="/images/mic-image.jpg"
+                src="/images/mic1.jpeg"
                 alt="Studio microphone"
                 fill
                 className="object-cover"

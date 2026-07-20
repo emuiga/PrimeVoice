@@ -28,10 +28,10 @@ const CATEGORIES: WorkCategory[] = [
   {
     num: '01',
     title: 'Radio & TV Commercials',
-    tagline: 'Voices that sell, stories that stick',
+    tagline: 'Conversational, Warm, Confident.',
     description:
-      'From 30-second radio spots to full TV commercial narrations — compelling audio that drives audience action and reinforces brand identity.',
-    items: ['Radio Spots', 'TV Commercial VO', 'Jingle Narration', 'Brand Voice Identity'],
+      'From 15-second radio spots to full TV commercial narrations — compelling audio that drives audience action and reinforces brand identity.',
+    items: ['Radio Spots', 'TV Commercial VO', 'Jingle Narration'],
     image: '/images/tv-commercial.jpg',
     media: [
       { type: 'youtube', src: 'https://www.youtube.com/embed/6HBVh_hloAc?si=4Ic7NFBhAgTArdAc&controls=0' },
@@ -99,7 +99,7 @@ const CATEGORIES: WorkCategory[] = [
   {
     num: '07',
     title: 'Audio-Visual Production',
-    tagline: 'Where sound meets vision',
+    tagline: 'Every frame, a lasting impression.',
     description:
       'Full-spectrum production integrating compelling visuals with professional voice and sound design for maximum impact.',
     items: ['Explainer Videos', 'Brand Films', 'Product Demos', 'Event Coverage'],
@@ -252,7 +252,6 @@ export default function WorkSamples({
                 activeIndex === i ? 'text-brand-orange' : 'text-gray-400 hover:text-gray-600'
               }`}
             >
-              <span className="text-gray-300 mr-1">{c.num}</span>
               <span className="hidden sm:inline">{c.title}</span>
               {activeIndex === i && (
                 <motion.div
@@ -304,7 +303,7 @@ export default function WorkSamples({
               className="bg-white/97 px-5 pt-4 pb-6"
             >
               <p className="text-brand-orange text-[9px] font-medium tracking-[0.3em] uppercase mb-1">
-                {cat.num} · {cat.tagline}
+                {cat.tagline}
               </p>
               <h2 className="text-2xl font-medium leading-tight mb-2" style={{ fontFamily: "'SuisseIntl', Arial, sans-serif" }}>
                 {cat.title}
@@ -367,12 +366,9 @@ export default function WorkSamples({
                 exit="exit"
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                {/* Number badge */}
-                <span className="text-xs text-gray-200 font-light select-none">{cat.num}</span>
-
                 {/* Heading — compact size so long titles don't wrap badly */}
                 <h2
-                  className="text-2xl lg:text-3xl font-medium leading-tight mt-0.5 mb-1.5"
+                  className="text-2xl lg:text-3xl font-medium leading-tight mb-1.5"
                   style={{ fontFamily: "'SuisseIntl', Arial, sans-serif" }}
                 >
                   {cat.title}

@@ -10,12 +10,27 @@
   /* Brand fonts */
   --font-playfair: var(--font-playfair-display);
   --font-inter: var(--font-inter-body);
-  --font-heading: 'SuisseIntl', var(--font-inter-body), sans-serif;
+  --font-heading: var(--font-inter-display), var(--font-inter-body), sans-serif;
+  --font-mono-label: var(--font-roboto-mono), monospace;
 }
 
 :root {
   --background: #ffffff;
   --foreground: rgb(26, 26, 26);
+}
+
+/* ─── Logo carousel — seamless infinite scroll ─── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 html {
@@ -32,7 +47,7 @@ body {
 
 /* ─── Display heading — brand spec ─── */
 .heading-display {
-  font-family: 'SuisseIntl', var(--font-inter-body), sans-serif;
+  font-family: var(--font-heading);
   font-style: normal;
   font-weight: 500;
   font-size: clamp(36px, 5vw, 55px);
@@ -41,7 +56,7 @@ body {
 }
 
 .heading-display-white {
-  font-family: 'SuisseIntl', var(--font-inter-body), sans-serif;
+  font-family: var(--font-heading);
   font-style: normal;
   font-weight: 500;
   font-size: clamp(36px, 5vw, 55px);

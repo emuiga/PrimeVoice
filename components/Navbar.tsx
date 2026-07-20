@@ -83,6 +83,7 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, link)}
                 onMouseEnter={() => setHoveredLink(link.label)}
                 onMouseLeave={() => setHoveredLink(null)}
+                style={{ fontFamily: 'var(--font-roboto-mono)' }}
                 className={`relative text-sm font-medium tracking-wide pb-1 transition-colors duration-200 ${
                   scrolled ? 'text-gray-700 hover:text-brand-purple' : 'text-white/85 hover:text-white'
                 }`}
@@ -103,7 +104,11 @@ export default function Navbar() {
             <Link
               href="/#contact"
               onClick={(e) => handleNavClick(e, { href: '#contact', anchor: true })}
-              className="bg-brand-orange text-white text-sm font-medium px-5 py-2.5 hover:bg-orange-600 transition-colors duration-200 tracking-wide"
+              style={{
+                fontFamily: 'var(--font-roboto-mono)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.15)',
+              }}
+              className="bg-brand-orange text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-orange-600 transition-colors duration-200 tracking-wide"
             >
               Let&apos;s work together
             </Link>
@@ -157,6 +162,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link)}
+                    style={{ fontFamily: 'var(--font-roboto-mono)' }}
                     className="flex items-center justify-between text-sm font-medium text-gray-700 hover:text-brand-purple transition-colors py-3 border-b border-gray-50"
                   >
                     {link.label}
@@ -167,7 +173,11 @@ export default function Navbar() {
               <Link
                 href="/#contact"
                 onClick={(e) => handleNavClick(e, { href: '#contact', anchor: true })}
-                className="block mt-4 bg-brand-orange text-white text-sm font-medium px-6 py-3 text-center hover:bg-orange-600 transition-colors"
+                style={{
+                  fontFamily: 'var(--font-roboto-mono)',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.15)',
+                }}
+                className="block mt-4 bg-brand-orange text-white text-sm font-medium px-6 py-3 rounded-lg text-center hover:bg-orange-600 transition-colors"
               >
                 Let&apos;s work together
               </Link>

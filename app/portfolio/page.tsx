@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PortfolioGrid from '@/components/PortfolioGrid'
@@ -48,16 +49,22 @@ export default function PortfolioPage() {
       <main>
 
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section className="relative bg-brand-dark overflow-hidden" style={{ minHeight: '38vh' }}>
+        <section className="relative bg-brand-dark overflow-hidden" style={{ minHeight: '42vh' }}>
           {/* Background image */}
-          <div className="absolute inset-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/studio1.jpg" alt="" className="w-full h-full object-cover opacity-20" aria-hidden="true" />
+          <div className="absolute inset-0 bg-brand-dark">
+            <Image src="/images/studio1.jpg" alt="" fill priority className="object-cover opacity-20" sizes="100vw" aria-hidden="true" />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 to-brand-dark" />
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-16">
-            <p className="text-brand-orange text-[11px] tracking-[0.35em] uppercase font-medium mb-4">
+          {/* Concentric circle pattern — echoes the homepage's soundwave motif */}
+          <svg className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.08] w-[420px] h-[420px] pointer-events-none" viewBox="0 0 520 520" fill="none" aria-hidden="true">
+            {[60, 110, 160, 210, 260].map((r) => (
+              <circle key={r} cx="520" cy="260" r={r} stroke="#FF5A1F" strokeWidth="1" />
+            ))}
+          </svg>
+
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-20">
+            <p className="text-brand-orange text-[11px] tracking-[0.35em] uppercase font-medium mb-4 font-mono-label">
               Prime Voice Media
             </p>
             <h1 className="heading-display-white mb-4">Our Portfolio</h1>
@@ -68,8 +75,12 @@ export default function PortfolioPage() {
         </section>
 
         {/* ── Portfolio grid ────────────────────────────────────── */}
-        <section className="bg-brand-surface py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="relative bg-brand-surface py-20 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/3 -right-24 w-96 h-96 rounded-full bg-brand-orange/6 blur-3xl" />
+            <div className="absolute bottom-1/4 -left-24 w-96 h-96 rounded-full bg-brand-purple/6 blur-3xl" />
+          </div>
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
             <PortfolioGrid />
           </div>
         </section>

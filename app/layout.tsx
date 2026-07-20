@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Playfair_Display, Inter, Roboto_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import { SERVICES } from '@/lib/services-data'
 import './globals.css'
 
@@ -13,6 +14,22 @@ const inter = Inter({
   variable: '--font-inter-body',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
+})
+
+const robotoMono = Roboto_Mono({
+  variable: '--font-roboto-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
+})
+
+const interDisplay = localFont({
+  src: [
+    { path: '../public/fonts/inter-display/ttf/InterDisplay-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/inter-display/ttf/InterDisplay-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../public/fonts/inter-display/ttf/InterDisplay-SemiBold.ttf', weight: '600', style: 'normal' },
+  ],
+  variable: '--font-inter-display',
+  display: 'swap',
 })
 
 const BASE = 'https://www.theprimevoicemedia.com'
@@ -78,7 +95,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} antialiased`}
+      className={`${playfair.variable} ${inter.variable} ${interDisplay.variable} ${robotoMono.variable} antialiased`}
     >
       <body>
         {children}

@@ -17,6 +17,7 @@ export type Service = {
   description: string
   items: string[]
   image: string         // category PNG illustration
+  photo?: string        // optional real photo — shown as the panel background when present
   accentColor: string   // Tailwind gradient classes for banner bg
   iconFilter: string    // CSS filter to colorize the monochrome PNG
   clients: ServiceClient[]  // populated when client names are provided
@@ -44,11 +45,12 @@ export const SERVICES: Service[] = [
     num: '01',
     slug: 'radio-tv-commercials',
     title: 'Radio & TV Commercials',
-    tagline: 'Voices that sell, stories that stick',
+    tagline: 'Conversational, Warm, Confident.',
     description:
-      'From 30-second radio spots to full TV commercial narrations, compelling audio that drives audience action and reinforces brand identity.',
-    items: ['Radio Spots', 'TV Commercial VO', 'Jingle Narration', 'Brand Voice Identity'],
+      'From 15-second radio spots to full TV commercial narrations, compelling audio that drives audience action and reinforces brand identity.',
+    items: ['Radio Spots', 'TV Commercial VO', 'Jingle Narration'],
     image: '/images/radioandtvcommercial.png',
+    photo: '/images/TVCommercial.jpg',
     accentColor: 'from-orange-950 to-brand-dark',
     iconFilter: FILTER_ORANGE,
     clients: [],
@@ -60,11 +62,12 @@ export const SERVICES: Service[] = [
     num: '02',
     slug: 'corporate-narration',
     title: 'Corporate Narration',
-    tagline: 'Authority. Clarity. Impact.',
+    tagline: 'Engaging, Articulate, Authoritative.',
     description:
-      'Professional narrations for presentations, annual reports, training materials, and internal communications that carry authority.',
-    items: ['Corporate Presentations', 'Annual Reports', 'Training Materials', 'Internal Comms'],
+      'Professional narrations for external brand videos, explainer videos, onboarding tutorials, and internal communications that carry authority.',
+    items: ['External Brand Videos', 'Explainer Videos', 'Onboarding Tutorials', 'Internal Comms'],
     image: '/images/corporatenarration.png',
+    photo: '/images/corporatenarration.jpg',
     accentColor: 'from-slate-900 to-brand-dark',
     iconFilter: FILTER_PURPLE,
     clients: [],
@@ -74,44 +77,42 @@ export const SERVICES: Service[] = [
     num: '03',
     slug: 'documentaries',
     title: 'Documentaries',
-    tagline: 'Stories told with depth and nuance',
+    tagline: 'Authoritative, Engaging, Clear.',
     description:
       'Thoughtful documentary narrations that honor real stories and guide viewers through complex topics with clarity and emotion.',
     items: ['Feature Documentaries', 'Short Docs', 'News Features', 'Historical Narration'],
     image: '/images/documentaries.png',
+    photo: '/images/documentaries.jpg',
     accentColor: 'from-stone-900 to-brand-dark',
     iconFilter: FILTER_AMBER,
     clients: [],
-    media: [
-      { type: 'driveAudio', fileId: '1XDGLG8eYauoE3Q4YRjHNR8aNtLnYAnnf', label: 'Echoes of Life' },
-      { type: 'driveAudio', fileId: '1ZjWQG3m6Q-bPf906AvekPdbyT4pcjdja', label: 'Notes of a Native Son' },
-    ],
+    media: [],
   },
   {
     num: '04',
     slug: 'e-learning',
     title: 'E-Learning',
-    tagline: 'Learning that resonates',
+    tagline: 'Inclusive, Clear, Supportive.',
     description:
       'Engaging narrations that improve knowledge retention and create immersive experiences for every type of learner.',
     items: ['Course Modules', 'Tutorial Narration', 'Educational Content', 'Accessibility Audio'],
     image: '/images/e-learning.png',
+    photo: '/images/elearning.jpg',
     accentColor: 'from-purple-950 to-brand-dark',
     iconFilter: FILTER_TEAL,
     clients: [],
-    media: [
-      { type: 'driveAudio', fileId: '1KAvBjEXmafUqY0s7qGrOM5Eo9nAdc0H0', label: 'Taita Taveta University' },
-    ],
+    media: [],
   },
   {
     num: '05',
     slug: 'social-media-promos',
     title: 'Social Media Promos',
-    tagline: 'Content that stops the scroll',
+    tagline: 'Vibrant, Concise, Dynamic.',
     description:
       'High-energy audio and video content designed for maximum engagement across all platforms.',
     items: ['Instagram Reels', 'YouTube Ads', 'TikTok Content', 'LinkedIn Video'],
     image: '/images/promotion.png',
+    photo: '/images/promo.jpg',
     accentColor: 'from-rose-950 to-brand-dark',
     iconFilter: FILTER_ROSE,
     clients: [],
@@ -124,11 +125,12 @@ export const SERVICES: Service[] = [
     num: '06',
     slug: 'podcast-intros-outros',
     title: 'Podcast Intros & Outros',
-    tagline: 'First impressions that last',
+    tagline: 'Engaging, Structured, Inviting.',
     description:
       "Memorable podcast branding, from opening hooks to closing sign-offs, that establishes your Podcast's voice and keeps listeners coming back.",
     items: ['Podcast Intros', 'Episode Outros', 'Show Trailers', 'Ad Reads'],
     image: '/images/mic (1).png',
+    photo: '/images/podcastintros.jpg',
     accentColor: 'from-indigo-950 to-brand-dark',
     iconFilter: 'none',  // mic (1).png already has its own colour
     clients: [],
@@ -138,14 +140,33 @@ export const SERVICES: Service[] = [
     num: '07',
     slug: 'audio-visual-production',
     title: 'Audio-Visual Production',
-    tagline: 'Where sound meets vision',
+    tagline: 'Every frame, a lasting impression.',
     description:
       'Full-spectrum production integrating compelling visuals with professional voice and sound design for maximum impact.',
     items: ['Explainer Videos', 'Brand Films', 'Product Demos', 'Event Coverage'],
     image: '/images/audiovisual.png',
+    photo: '/images/audiovisual.jpg',
     accentColor: 'from-zinc-900 to-brand-dark',
     iconFilter: FILTER_INDIGO,
     clients: [],
     media: [],
+  },
+  {
+    num: '08',
+    slug: 'audiobook-narration',
+    title: 'Audio-Book Narration',
+    tagline: 'Stories, voiced with care',
+    description:
+      'Long-form narration for audiobooks, bringing characters and stories to life with pacing, tone, and consistency across every chapter.',
+    items: ['Fiction Narration', 'Non-Fiction Narration', 'Multi-Character Voicing', 'Chapter Sampling'],
+    image: '/images/icons/study.png',
+    photo: '/images/audiobooknarration.jpg',
+    accentColor: 'from-purple-950 to-brand-dark',
+    iconFilter: FILTER_PURPLE,
+    clients: [],
+    media: [
+      { type: 'driveAudio', fileId: '1XDGLG8eYauoE3Q4YRjHNR8aNtLnYAnnf', label: 'Echoes of Life' },
+      { type: 'driveAudio', fileId: '1ZjWQG3m6Q-bPf906AvekPdbyT4pcjdja', label: 'Notes of a Native Son' },
+    ],
   },
 ]

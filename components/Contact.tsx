@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { WHATSAPP_LINK, EMAIL_LINK, CONTACT_EMAIL } from '@/lib/contact-info'
 
 function WhatsAppIcon({ size = 36 }: { size?: number }) {
   return (
@@ -59,7 +60,7 @@ export default function Contact() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5"
+              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5 font-mono-label"
             >
               Get in Touch
             </motion.span>
@@ -86,24 +87,21 @@ export default function Contact() {
               let&apos;s create something meaningful together.
             </motion.p>
 
-            {/* Contact icon buttons */}
-            <div className="flex gap-8">
+            {/* Contact buttons */}
+            <div className="flex flex-col xs:flex-row sm:flex-row gap-3">
               <motion.a
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.25 }}
-                href="https://wa.me/254792481990?text=Hi%20Prime%20Voice%20Media%2C%20I%20came%20across%20your%20work%20and%20I%27m%20interested%20in%20discussing%20a%20project."
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-2"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white text-sm font-medium px-6 py-3.5 rounded-lg hover:bg-[#1fb958] transition-colors duration-200 tracking-wide"
+                style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.15)' }}
               >
-                <div className="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300">
-                  <WhatsAppIcon size={28} />
-                </div>
-                <span className="text-gray-600 text-sm font-medium group-hover:text-[#25D366] transition-colors">
-                  WhatsApp
-                </span>
+                <WhatsAppIcon size={18} />
+                WhatsApp
               </motion.a>
 
               <motion.a
@@ -111,15 +109,11 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.35 }}
-                href="mailto:enyaboke130@gmail.com"
-                className="group flex flex-col items-center gap-2"
+                href={EMAIL_LINK}
+                className="inline-flex items-center justify-center gap-2.5 border border-gray-300 text-gray-800 text-sm font-medium px-6 py-3.5 rounded-lg hover:border-brand-orange hover:text-brand-orange transition-colors duration-200 tracking-wide"
               >
-                <div className="w-16 h-16 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300">
-                  <EmailIcon size={28} />
-                </div>
-                <span className="text-gray-600 text-sm font-medium group-hover:text-brand-orange transition-colors">
-                  Email
-                </span>
+                <EmailIcon size={18} />
+                Email
               </motion.a>
             </div>
           </div>
@@ -160,7 +154,7 @@ export default function Contact() {
                       <input
                         type={f.type} id={f.id} name={f.name}
                         placeholder={f.placeholder} required
-                        className="w-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-4 py-3.5 focus:outline-none focus:border-brand-orange transition-all text-sm"
+                        className="w-full rounded-sm border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-4 py-3.5 focus:outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/15 transition-all text-sm"
                       />
                     </div>
                   ))}

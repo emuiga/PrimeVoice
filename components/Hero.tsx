@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 const container = {
   hidden: {},
@@ -19,13 +18,16 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
-      {/* ── Full-screen studio image ── */}
-      <Image
-        src="/images/studio2.jpg"
-        alt=""
-        fill
-        className="object-cover"
-        priority
+      {/* ── Full-screen studio video ── */}
+      <video
+        src="/images/videos/studio.mp4"
+        poster="/images/studio-poster.jpg"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       />
 
@@ -56,7 +58,7 @@ export default function Hero() {
           >
             <motion.span
               variants={item}
-              className="inline-block text-brand-orange text-[10px] sm:text-xs font-medium tracking-[0.35em] uppercase mb-5 sm:mb-6"
+              className="inline-block text-brand-orange text-[10px] sm:text-xs font-medium tracking-[0.35em] uppercase mb-5 sm:mb-6 font-mono-label"
             >
               Voice-Over &amp; Audio Visual Production
             </motion.span>
@@ -65,7 +67,7 @@ export default function Hero() {
               variants={item}
               className="mb-6"
               style={{
-                fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif",
+                fontFamily: 'var(--font-heading)',
                 fontWeight: 500,
                 fontSize: 'clamp(32px, 6vw, 58px)',
                 lineHeight: 'clamp(38px, 6.8vw, 65px)',
@@ -95,7 +97,7 @@ export default function Hero() {
                 className="border border-white/50 text-white text-sm font-medium tracking-[0.12em] px-7 py-3.5 sm:px-8 sm:py-4 hover:bg-white hover:text-black transition-all duration-300"
                 style={{ textShadow: 'none' }}
               >
-                Hear the Work
+                See Work
               </button>
               <button
                 onClick={() => handleScroll('#contact')}
@@ -116,7 +118,7 @@ export default function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         aria-hidden="true"
       >
-        <span className="text-white/40 text-[10px] tracking-[0.35em] uppercase">Scroll</span>
+        <span className="text-white/40 text-[10px] tracking-[0.35em] uppercase font-mono-label">Scroll</span>
         <motion.div
           animate={{ scaleY: [1, 0.3, 1], opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}

@@ -11,24 +11,48 @@ const clients = [
   },
   {
     name: 'Lightower Electricals',
-    shortName: 'Lightower',
-    image: '/images/Lightower.webp',
+    shortName: 'Lightower Electricals',
+    image: '/images/lightower-logo-alt.png',
   },
   {
     name: 'Bethany Delights',
     shortName: 'Bethany Delights',
-    image: null,
+    image: '/images/bethanys-logo-trimmed.png',
   },
   {
     name: 'Kisii Family Medical Centre',
-    shortName: 'Kisii Medical',
-    image: '/images/kisiifamilymedicalcentre-300x300.jpg',
+    shortName: 'Kisii Family Medical Centre',
+    image: '/images/kfmc-logo.png',
   },
 ]
 
+// Duplicated so the track can loop from -50% back to 0% seamlessly —
+// the last badge of the first set sits right before the first badge repeats.
+const track = [...clients, ...clients]
+
+function Badge({ client }: { client: (typeof clients)[number] }) {
+  return (
+    <div className="group flex items-center gap-4 pr-16 shrink-0">
+      <span className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-white">
+        <Image
+          src={client.image}
+          alt=""
+          fill
+          className="object-contain p-2.5"
+          sizes="80px"
+          aria-hidden="true"
+        />
+      </span>
+      <span className="text-white/60 group-hover:text-white text-lg font-medium whitespace-nowrap transition-colors duration-300">
+        {client.shortName}
+      </span>
+    </div>
+  )
+}
+
 export default function Clients() {
   return (
-    <section id="clients" className="bg-brand-dark py-16 sm:py-20 overflow-hidden">
+    <section id="clients" className="relative bg-brand-dark py-16 sm:py-20 overflow-hidden">
 
       {/* Header */}
       <motion.div
@@ -38,54 +62,22 @@ export default function Clients() {
         transition={{ duration: 0.6 }}
         className="text-center mb-12 px-6"
       >
-        <p className="text-brand-orange text-[10px] tracking-[0.4em] uppercase font-medium mb-3">
+        <p className="text-brand-orange text-xs tracking-[0.4em] uppercase font-medium">
           Our Clients
         </p>
-        <h2 className="heading-display-white">Trusted By</h2>
       </motion.div>
 
-      {/* Logo grid */}
-      <div className="max-w-5xl mx-auto px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {clients.map((client, i) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="bg-white flex flex-col items-center justify-center gap-3 py-8 px-6"
-            >
-              {client.image ? (
-                <div className="relative w-full h-14 sm:h-16">
-                  <Image
-                    src={client.image}
-                    alt={client.name}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ) : (
-                /* Styled wordmark for clients without a logo file */
-                <p
-                  className="text-brand-dark text-lg sm:text-xl font-semibold tracking-tight text-center leading-tight"
-                  style={{ fontFamily: "'SuisseIntl', var(--font-inter-body), sans-serif" }}
-                >
-                  {client.shortName}
-                </p>
-              )}
-              <span className="text-gray-600 text-[10px] tracking-[0.18em] uppercase text-center leading-snug">
-                {client.shortName}
-              </span>
-            </motion.div>
+      {/* Logo carousel — infinite, one row, first badge follows the last seamlessly */}
+      <div className="relative">
+        <div className="flex w-max animate-marquee">
+          {track.map((client, i) => (
+            <Badge key={`${client.name}-${i}`} client={client} />
           ))}
         </div>
-      </div>
 
-      {/* Bottom rule */}
-      <div className="max-w-5xl mx-auto px-8 mt-0">
-        <div className="h-px bg-white/5" />
+        {/* Edge fades so badges don't hard-cut at the viewport edge */}
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-brand-dark to-transparent pointer-events-none" aria-hidden="true" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-brand-dark to-transparent pointer-events-none" aria-hidden="true" />
       </div>
 
     </section>
