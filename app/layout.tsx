@@ -37,11 +37,9 @@ const BASE = 'https://www.theprimevoicemedia.com'
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   icons: {
-    icon: [
-      { url: '/images/mic.png', type: 'image/png', sizes: 'any' },
-    ],
-    apple: { url: '/images/mic.png', type: 'image/png' },
-    shortcut: '/images/mic.png',
+    icon: { url: '/favicon.ico', sizes: 'any' },
+    apple: { url: '/apple-touch-icon.png', type: 'image/png' },
+    shortcut: '/favicon.ico',
   },
   title: {
     default: 'Prime Voice Media | Professional Voice-Over & Audio Visual',

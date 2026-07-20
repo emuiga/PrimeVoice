@@ -5,7 +5,12 @@ export const alt = 'Prime Voice Media — Voice That Resonates, Impact That Last
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default function Image() {
+export default async function Image() {
+  const photoData = await fetch(new URL('../public/images/footerimage.jpg', import.meta.url)).then((res) =>
+    res.arrayBuffer(),
+  )
+  const photoSrc = `data:image/jpeg;base64,${Buffer.from(photoData).toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -22,19 +27,24 @@ export default function Image() {
           fontFamily: 'sans-serif',
         }}
       >
+        {/* Background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photoSrc}
+          alt=""
+          width={1200}
+          height={630}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+            background: 'linear-gradient(100deg, rgba(26,10,46,0.96) 0%, rgba(26,10,46,0.88) 45%, rgba(26,10,46,0.55) 100%)',
+          }}
+        />
+
         {/* Top orange bar */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '6px', background: '#FF5A1F' }} />
-
-        {/* Decorative circle rings — right side */}
-        <div style={{
-          position: 'absolute', right: '-60px', top: '50%', transform: 'translateY(-50%)',
-          width: '480px', height: '480px', borderRadius: '50%',
-          border: '1px solid rgba(94,24,154,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <div style={{ width: '360px', height: '360px', borderRadius: '50%', border: '1px solid rgba(94,24,154,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: '240px', height: '240px', borderRadius: '50%', border: '1px solid rgba(255,90,31,0.2)' }} />
-          </div>
-        </div>
 
         {/* Label */}
         <div style={{
