@@ -105,7 +105,7 @@ export default function RootLayout({
           name: 'Prime Voice Media',
           description: 'Professional Voice-Over and audio visual communication connecting brands with the audiences they were made to serve.',
           telephone: '+254792481990',
-          email: 'enyaboke130@gmail.com',
+          email: 'primevoicemedia@gmail.com',
           url: BASE,
           logo: `${BASE}/images/PVMlogo.png`,
           image: `${BASE}/opengraph-image`,
@@ -127,7 +127,7 @@ export default function RootLayout({
               },
             })),
           },
-          sameAs: [],
+          sameAs: ['https://www.instagram.com/prime_voice_media/'],
         })}} />
 
         {/* ── WebSite schema (enables sitelinks searchbox) ────── */}

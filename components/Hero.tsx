@@ -21,7 +21,6 @@ export default function Hero() {
       {/* ── Full-screen studio video ── */}
       <video
         src="/images/videos/studio.mp4"
-        poster="/images/studio-poster.jpg"
         autoPlay
         loop
         muted

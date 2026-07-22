@@ -2,6 +2,9 @@
 // IMPORTANT: Your "from" domain must be verified in your Resend dashboard.
 // Visit https://resend.com/domains and add primevoicemedia.co.ke
 // Until verified, use onboarding@resend.dev (sends to your Resend account email only).
+// TEMP: `to` is set to the Resend account owner's email (muigastephen14@gmail.com) because
+// the account is unverified/sandboxed. Switch back to primevoicemedia@gmail.com once a
+// domain is verified at resend.com/domains.
 
 export async function POST(request: Request) {
   const body = await request.json()
@@ -25,7 +28,7 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       // Replace with noreply@primevoicemedia.co.ke once domain is verified in Resend
       from: 'Prime Voice Media <onboarding@resend.dev>',
-      to: ['enyaboke130@gmail.com'],
+      to: ['muigastephen14@gmail.com'],
       reply_to: email,
       subject: `New enquiry${subject ? `: ${subject}` : ''} — from ${name}`,
       html: `

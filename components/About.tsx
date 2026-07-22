@@ -51,16 +51,6 @@ export default function About() {
 
           {/* Left — Text */}
           <div>
-            <motion.span
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-block text-brand-orange text-xs font-medium tracking-[0.35em] uppercase mb-5 font-mono-label"
-            >
-              Our Story
-            </motion.span>
-
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -166,18 +156,6 @@ export default function About() {
                 className="object-cover"
                 sizes="208px"
               />
-            </motion.div>
-
-            {/* Stats badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute top-6 -right-4 bg-brand-orange text-white px-6 py-4 shadow-xl"
-            >
-              <p className="text-3xl font-bold leading-none">4+</p>
-              <p className="text-xs tracking-wide mt-1 text-orange-100">Years Experience</p>
             </motion.div>
           </motion.div>
 

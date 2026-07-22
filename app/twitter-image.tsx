@@ -1,14 +1,13 @@
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
 export const alt = 'Prime Voice Media — Voice That Resonates, Impact That Lasts!'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const photoData = await fetch(new URL('../public/images/footerimage.jpg', import.meta.url)).then((res) =>
-    res.arrayBuffer(),
-  )
+  const photoData = await readFile(join(process.cwd(), 'public/images/footerimage.jpg'))
   const photoSrc = `data:image/jpeg;base64,${Buffer.from(photoData).toString('base64')}`
 
   return new ImageResponse(

@@ -64,7 +64,7 @@ export default function PortfolioPage() {
             <p className="text-brand-orange text-[11px] tracking-[0.35em] uppercase font-medium mb-5 font-mono-label">
               Prime Voice Media
             </p>
-            <h1 className="heading-display-white mb-5 max-w-2xl">Our Portfolio</h1>
+            <h1 className="heading-display-white mb-5 max-w-2xl">Portfolio</h1>
             <p className="text-white/60 text-base leading-relaxed max-w-lg">
               A curated look at the voices, stories, and productions we&apos;ve brought to life for brands across every discipline.
             </p>
