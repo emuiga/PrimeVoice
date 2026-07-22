@@ -64,7 +64,9 @@ export async function getClients(): Promise<ClientLogo[]> {
       id: c._id,
       name: c.name,
       shortName: c.shortName,
+      // Width-only (no height) avoids the image-url builder's auto center-crop,
+      // which otherwise squares off wide/landscape logos before fitting them.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      logoUrl: urlFor(c.logo as any).width(160).height(160).fit('max').url(),
+      logoUrl: urlFor(c.logo as any).width(320).url(),
     }))
 }
