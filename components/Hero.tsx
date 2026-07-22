@@ -17,7 +17,7 @@ export default function Hero() {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative h-screen min-h-[600px] overflow-hidden bg-brand-dark">
       {/* ── Full-screen studio video ── */}
       <video
         src="/images/videos/studio.mp4"
