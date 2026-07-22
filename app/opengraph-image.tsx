@@ -42,19 +42,18 @@ export default async function Image() {
           }}
         />
 
-        {/* Top orange bar */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '6px', background: '#FF5A1F' }} />
-
         {/* Label */}
-        <div style={{
-          color: '#FF5A1F',
-          fontSize: '15px',
-          letterSpacing: '0.35em',
-          textTransform: 'uppercase',
-          fontWeight: 500,
-          marginBottom: '28px',
-        }}>
-          Professional Voice-Over &amp; Audio Visual
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '28px' }}>
+          <div style={{ width: '36px', height: '3px', background: '#FF5A1F', marginRight: '16px' }} />
+          <div style={{
+            color: '#FF5A1F',
+            fontSize: '15px',
+            letterSpacing: '0.35em',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+          }}>
+            Professional Voice-Over &amp; Audio Visual
+          </div>
         </div>
 
         {/* Company name */}
@@ -91,9 +90,6 @@ export default async function Image() {
         }}>
           www.theprimevoicemedia.com
         </div>
-
-        {/* Bottom orange bar */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '6px', background: '#FF5A1F' }} />
       </div>
     ),
     { ...size },
