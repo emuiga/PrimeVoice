@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import {
   SERVICES,
-  type MediaEntry,
   type Service,
 } from '@/lib/services-data'
+import type { PortfolioItem } from '@/lib/sanity/queries'
 
 // ── Full-screen video overlay ──────────────────────────────────────────────
 function VideoOverlay({ fileId, label, onClose }: { fileId: string; label: string; onClose: () => void }) {
@@ -106,26 +106,27 @@ function DriveAudioCard({ fileId, label, accentColor }: { fileId: string; label:
 }
 
 // ── Media dispatcher ───────────────────────────────────────────────────────
-function MediaBlock({ entry, fallbackImage, accentColor, onPlayVideo }: {
-  entry: MediaEntry; fallbackImage: string; accentColor: string; onPlayVideo: (fileId: string, label: string) => void
+function MediaBlock({ item, fallbackImage, accentColor, onPlayVideo }: {
+  item: PortfolioItem; fallbackImage: string; accentColor: string; onPlayVideo: (fileId: string, label: string) => void
 }) {
-  if (entry.type === 'driveVideo')
-    return <DriveVideoCard fileId={entry.fileId} label={entry.label} fallbackImage={fallbackImage} onPlay={() => onPlayVideo(entry.fileId, entry.label)} />
-  if (entry.type === 'driveAudio')
-    return <DriveAudioCard fileId={entry.fileId} label={entry.label} accentColor={accentColor} />
+  if (item.mediaType === 'video')
+    return <DriveVideoCard fileId={item.driveFileId} label={item.title} fallbackImage={fallbackImage} onPlay={() => onPlayVideo(item.driveFileId, item.title)} />
+  if (item.mediaType === 'audio')
+    return <DriveAudioCard fileId={item.driveFileId} label={item.title} accentColor={accentColor} />
   return null
 }
 
 // ── Service spread — editorial alternating layout ──────────────────────────
-function ServiceSpread({ service, reverse, isOpen, onToggle, onPlayVideo }: {
+function ServiceSpread({ service, media, reverse, isOpen, onToggle, onPlayVideo }: {
   service: Service
+  media: PortfolioItem[]
   reverse: boolean
   isOpen: boolean
   onToggle: () => void
   onPlayVideo: (fileId: string, label: string) => void
 }) {
-  const videos = service.media.filter((m) => m.type === 'driveVideo')
-  const audios = service.media.filter((m) => m.type === 'driveAudio')
+  const videos = media.filter((m) => m.mediaType === 'video')
+  const audios = media.filter((m) => m.mediaType === 'audio')
 
   const hasPhoto = Boolean(service.photo)
 
@@ -240,13 +241,13 @@ function ServiceSpread({ service, reverse, isOpen, onToggle, onPlayVideo }: {
                   </span>
                 ))}
               </div>
-              {service.media.length > 0 && (
+              {media.length > 0 && (
                 <div className="space-y-3 text-left">
-                  {videos.map((m, mi) => (
-                    <MediaBlock key={`v${mi}`} entry={m} fallbackImage={service.image} accentColor={service.accentColor} onPlayVideo={onPlayVideo} />
+                  {videos.map((m) => (
+                    <MediaBlock key={m.id} item={m} fallbackImage={service.image} accentColor={service.accentColor} onPlayVideo={onPlayVideo} />
                   ))}
-                  {audios.map((m, mi) => (
-                    <MediaBlock key={`a${mi}`} entry={m} fallbackImage={service.image} accentColor={service.accentColor} onPlayVideo={() => {}} />
+                  {audios.map((m) => (
+                    <MediaBlock key={m.id} item={m} fallbackImage={service.image} accentColor={service.accentColor} onPlayVideo={() => {}} />
                   ))}
                 </div>
               )}
@@ -259,9 +260,19 @@ function ServiceSpread({ service, reverse, isOpen, onToggle, onPlayVideo }: {
 }
 
 // ── Main component ─────────────────────────────────────────────────────────
-export default function ServicesAndSamples() {
+export default function ServicesAndSamples({ portfolioItems }: { portfolioItems: PortfolioItem[] }) {
   const [active, setActive] = useState<number | null>(null)
   const [overlayVideo, setOverlayVideo] = useState<{ fileId: string; label: string } | null>(null)
+
+  const mediaByService = useMemo(() => {
+    const map = new Map<string, PortfolioItem[]>()
+    for (const item of portfolioItems) {
+      const list = map.get(item.service) ?? []
+      list.push(item)
+      map.set(item.service, list)
+    }
+    return map
+  }, [portfolioItems])
 
   return (
     <>
@@ -341,6 +352,7 @@ export default function ServicesAndSamples() {
             <ServiceSpread
               key={s.slug}
               service={s}
+              media={mediaByService.get(s.title) ?? []}
               reverse={i % 2 === 1}
               isOpen={active === i}
               onToggle={() => setActive(active === i ? null : i)}

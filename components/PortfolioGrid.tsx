@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { SERVICES, FILTER_ORANGE, type MediaEntry } from '@/lib/services-data'
+import { SERVICES, FILTER_ORANGE } from '@/lib/services-data'
+import type { PortfolioItem } from '@/lib/sanity/queries'
 
-// ── Derive flat project list from services ─────────────────────────────────
+// ── Derive flat project list from services + CMS-supplied portfolio items ──
 type Project = {
   id: string
   label: string         // project / work title  (e.g. "Echoes of Life")
@@ -13,34 +14,28 @@ type Project = {
   serviceSlug: string
   serviceImage: string
   servicePhoto: string
-  media: MediaEntry
+  mediaType: 'video' | 'audio'
+  driveFileId: string
 }
 
-function buildProjects(): Project[] {
+function buildProjects(portfolioItems: PortfolioItem[]): Project[] {
   const projects: Project[] = []
-  for (const s of SERVICES) {
-    for (const m of s.media) {
-      projects.push({
-        id: `${s.slug}-${m.label}`,
-        label: m.label,
-        serviceTitle: s.title,
-        serviceSlug: s.slug,
-        serviceImage: s.image,
-        servicePhoto: s.photo ?? s.image,
-        media: m,
-      })
-    }
+  for (const item of portfolioItems) {
+    const s = SERVICES.find((svc) => svc.title === item.service)
+    if (!s) continue
+    projects.push({
+      id: item.id,
+      label: item.title,
+      serviceTitle: s.title,
+      serviceSlug: s.slug,
+      serviceImage: s.image,
+      servicePhoto: s.photo ?? s.image,
+      mediaType: item.mediaType,
+      driveFileId: item.driveFileId,
+    })
   }
   return projects
 }
-
-const ALL_PROJECTS = buildProjects()
-
-// Unique service categories that actually have content
-const FILTER_OPTIONS = [
-  'All',
-  ...Array.from(new Set(ALL_PROJECTS.map((p) => p.serviceTitle))),
-]
 
 // ── Full-screen video overlay ──────────────────────────────────────────────
 function VideoOverlay({ fileId, label, onClose }: { fileId: string; label: string; onClose: () => void }) {
@@ -84,7 +79,6 @@ function VideoOverlay({ fileId, label, onClose }: { fileId: string; label: strin
 
 // ── Video thumbnail card ───────────────────────────────────────────────────
 function VideoCard({ project, onPlay }: { project: Project; onPlay: () => void }) {
-  const m = project.media as Extract<MediaEntry, { type: 'driveVideo' }>
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -97,7 +91,7 @@ function VideoCard({ project, onPlay }: { project: Project; onPlay: () => void }
       <button
         onClick={onPlay}
         className="relative w-full aspect-video group block overflow-hidden bg-brand-dark shrink-0"
-        aria-label={`Play ${m.label}`}
+        aria-label={`Play ${project.label}`}
       >
         <Image src={project.servicePhoto} alt={project.serviceTitle} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 100vw, 50vw" />
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
@@ -124,7 +118,6 @@ function VideoCard({ project, onPlay }: { project: Project; onPlay: () => void }
 // ── Audio card ─────────────────────────────────────────────────────────────
 function AudioCard({ project }: { project: Project }) {
   const [loaded, setLoaded] = useState(false)
-  const m = project.media as Extract<MediaEntry, { type: 'driveAudio' }>
 
   return (
     <motion.div
@@ -160,7 +153,7 @@ function AudioCard({ project }: { project: Project }) {
 
         {/* Audio player — click to load */}
         {loaded ? (
-          <iframe src={`https://drive.google.com/file/d/${m.fileId}/preview`} width="100%" height="170" allow="autoplay" title={m.label} className="border-0 w-full block" />
+          <iframe src={`https://drive.google.com/file/d/${project.driveFileId}/preview`} width="100%" height="170" allow="autoplay" title={project.label} className="border-0 w-full block" />
         ) : (
           <button onClick={() => setLoaded(true)}
             className="flex items-center gap-2.5 text-gray-700 hover:text-brand-orange transition-colors group text-sm">
@@ -191,19 +184,33 @@ function ServiceTag({ project }: { project: Project }) {
 
 // ── Project card dispatcher ────────────────────────────────────────────────
 function ProjectCard({ project, onPlayVideo }: { project: Project; onPlayVideo: () => void }) {
-  if (project.media.type === 'driveVideo') return <VideoCard project={project} onPlay={onPlayVideo} />
-  if (project.media.type === 'driveAudio') return <AudioCard project={project} />
+  if (project.mediaType === 'video') return <VideoCard project={project} onPlay={onPlayVideo} />
+  if (project.mediaType === 'audio') return <AudioCard project={project} />
   return null
 }
 
 // ── Main grid ──────────────────────────────────────────────────────────────
-export default function PortfolioGrid() {
+export default function PortfolioGrid({ portfolioItems }: { portfolioItems: PortfolioItem[] }) {
   const [filter, setFilter] = useState('All')
   const [overlayVideo, setOverlayVideo] = useState<{ fileId: string; label: string } | null>(null)
 
+  const allProjects = useMemo(() => buildProjects(portfolioItems), [portfolioItems])
+  const filterOptions = useMemo(
+    () => ['All', ...Array.from(new Set(allProjects.map((p) => p.serviceTitle)))],
+    [allProjects],
+  )
+
   const visible = filter === 'All'
-    ? ALL_PROJECTS
-    : ALL_PROJECTS.filter((p) => p.serviceTitle === filter)
+    ? allProjects
+    : allProjects.filter((p) => p.serviceTitle === filter)
+
+  if (allProjects.length === 0) {
+    return (
+      <p className="text-gray-500 text-sm text-center py-16">
+        Portfolio items are on the way — check back soon.
+      </p>
+    )
+  }
 
   return (
     <>
@@ -216,7 +223,7 @@ export default function PortfolioGrid() {
       {/* Filter pills */}
       <div className="mb-6 -mx-6 px-6 overflow-x-auto scrollbar-hide">
         <div className="flex gap-2 min-w-max pb-1">
-          {FILTER_OPTIONS.map((f) => (
+          {filterOptions.map((f) => (
             <button key={f} onClick={() => setFilter(f)}
               className={`shrink-0 rounded-full px-4 py-2 text-xs font-medium tracking-wide font-mono-label transition-all duration-200 ${filter === f ? 'bg-brand-orange text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-orange hover:text-brand-orange'}`}>
               {f}
@@ -239,10 +246,7 @@ export default function PortfolioGrid() {
             <ProjectCard
               key={project.id}
               project={project}
-              onPlayVideo={() => {
-                const m = project.media as Extract<MediaEntry, { type: 'driveVideo' }>
-                setOverlayVideo({ fileId: m.fileId, label: m.label })
-              }}
+              onPlayVideo={() => setOverlayVideo({ fileId: project.driveFileId, label: project.label })}
             />
           ))}
         </motion.div>

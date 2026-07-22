@@ -1,8 +1,5 @@
 // Shared service data — imported by ServicesAndSamples (homepage) and PortfolioGrid (portfolio page)
-
-export type MediaEntry =
-  | { type: 'driveVideo'; fileId: string; label: string }
-  | { type: 'driveAudio'; fileId: string; label: string }
+// Portfolio work samples (videos/audio) live in Sanity CMS — see lib/sanity/queries.ts
 
 export type ServiceClient = {
   name: string    // Business / brand name
@@ -21,7 +18,6 @@ export type Service = {
   accentColor: string   // Tailwind gradient classes for banner bg
   iconFilter: string    // CSS filter to colorize the monochrome PNG
   clients: ServiceClient[]  // populated when client names are provided
-  media: MediaEntry[]
 }
 
 // ── CSS filter presets ─────────────────────────────────────────────────────
@@ -54,9 +50,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-orange-950 to-brand-dark',
     iconFilter: FILTER_ORANGE,
     clients: [],
-    media: [
-      { type: 'driveVideo', fileId: '1udPJmqXdmm8aCz-3coBkiu6oCz22ERby', label: 'Media Council TV Commercial' },
-    ],
   },
   {
     num: '02',
@@ -71,7 +64,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-slate-900 to-brand-dark',
     iconFilter: FILTER_PURPLE,
     clients: [],
-    media: [],
   },
   {
     num: '03',
@@ -86,7 +78,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-stone-900 to-brand-dark',
     iconFilter: FILTER_AMBER,
     clients: [],
-    media: [],
   },
   {
     num: '04',
@@ -101,7 +92,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-purple-950 to-brand-dark',
     iconFilter: FILTER_TEAL,
     clients: [],
-    media: [],
   },
   {
     num: '05',
@@ -116,10 +106,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-rose-950 to-brand-dark',
     iconFilter: FILTER_ROSE,
     clients: [],
-    media: [
-      { type: 'driveVideo', fileId: '1oSAh8hGVMx1h0P9hqRDC2E-cZv_bbqvQ', label: 'Bethany Delights Social Media Promo' },
-      { type: 'driveAudio', fileId: '1MRd8orV1xmy_BlPLp9LUxL9-HO6tRsxD', label: 'Lightower Electricals Social Media Promo' },
-    ],
   },
   {
     num: '06',
@@ -134,7 +120,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-indigo-950 to-brand-dark',
     iconFilter: 'none',  // mic (1).png already has its own colour
     clients: [],
-    media: [],
   },
   {
     num: '07',
@@ -149,7 +134,6 @@ export const SERVICES: Service[] = [
     accentColor: 'from-zinc-900 to-brand-dark',
     iconFilter: FILTER_INDIGO,
     clients: [],
-    media: [],
   },
   {
     num: '08',
@@ -164,9 +148,5 @@ export const SERVICES: Service[] = [
     accentColor: 'from-purple-950 to-brand-dark',
     iconFilter: FILTER_PURPLE,
     clients: [],
-    media: [
-      { type: 'driveAudio', fileId: '1XDGLG8eYauoE3Q4YRjHNR8aNtLnYAnnf', label: 'Echoes of Life' },
-      { type: 'driveAudio', fileId: '1ZjWQG3m6Q-bPf906AvekPdbyT4pcjdja', label: 'Notes of a Native Son' },
-    ],
   },
 ]

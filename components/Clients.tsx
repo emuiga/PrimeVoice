@@ -2,40 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import type { ClientLogo } from '@/lib/sanity/queries'
 
-const clients = [
-  {
-    name: 'Kenya Broadcasting Corporation',
-    shortName: 'KBC',
-    image: '/images/KBC_Kenya.PNG',
-  },
-  {
-    name: 'Lightower Electricals',
-    shortName: 'Lightower Electricals',
-    image: '/images/lightower-logo-alt.png',
-  },
-  {
-    name: 'Bethany Delights',
-    shortName: 'Bethany Delights',
-    image: '/images/bethanys-logo-trimmed.png',
-  },
-  {
-    name: 'Kisii Family Medical Centre',
-    shortName: 'Kisii Family Medical Centre',
-    image: '/images/kfmc-logo.png',
-  },
-]
-
-// Duplicated so the track can loop from -50% back to 0% seamlessly —
-// the last badge of the first set sits right before the first badge repeats.
-const track = [...clients, ...clients]
-
-function Badge({ client }: { client: (typeof clients)[number] }) {
+function Badge({ client }: { client: ClientLogo }) {
   return (
     <div className="group flex items-center gap-4 pr-16 shrink-0">
       <span className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-white">
         <Image
-          src={client.image}
+          src={client.logoUrl}
           alt=""
           fill
           className="object-contain p-2.5"
@@ -50,7 +24,13 @@ function Badge({ client }: { client: (typeof clients)[number] }) {
   )
 }
 
-export default function Clients() {
+export default function Clients({ clients }: { clients: ClientLogo[] }) {
+  if (clients.length === 0) return null
+
+  // Duplicated so the track can loop from -50% back to 0% seamlessly —
+  // the last badge of the first set sits right before the first badge repeats.
+  const track = [...clients, ...clients]
+
   return (
     <section id="clients" className="relative bg-brand-dark py-16 sm:py-20 overflow-hidden">
 
@@ -71,7 +51,7 @@ export default function Clients() {
       <div className="relative">
         <div className="flex w-max animate-marquee">
           {track.map((client, i) => (
-            <Badge key={`${client.name}-${i}`} client={client} />
+            <Badge key={`${client.id}-${i}`} client={client} />
           ))}
         </div>
 

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import PortfolioGrid from '@/components/PortfolioGrid'
 import BackToTop from '@/components/BackToTop'
 import { SERVICES } from '@/lib/services-data'
+import { getPortfolioItems } from '@/lib/sanity/queries'
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -41,7 +42,9 @@ const portfolioSchema = {
   })),
 }
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const portfolioItems = await getPortfolioItems()
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioSchema) }} />
@@ -78,7 +81,7 @@ export default function PortfolioPage() {
             <div className="absolute bottom-1/4 -left-24 w-96 h-96 rounded-full bg-brand-purple/6 blur-3xl" />
           </div>
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <PortfolioGrid />
+            <PortfolioGrid portfolioItems={portfolioItems} />
           </div>
         </section>
 
