@@ -114,6 +114,17 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 py-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 sm:gap-4">
         <p className="text-white/30 text-[11px] sm:text-xs font-mono-label tracking-wide text-center sm:text-left">
           © {year} Prime Voice Media. All rights reserved.
+          <br className="sm:hidden" />
+          <span className="hidden sm:inline"> &middot; </span>
+          crafted by{' '}
+          <a
+            href="https://origin.co.ke"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/50 hover:text-white transition-colors duration-200"
+          >
+            origin.co.ke
+          </a>
         </p>
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           {SOCIAL_LINKS.map((s) => (
